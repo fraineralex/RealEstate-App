@@ -1,6 +1,12 @@
+using RealEstateApp.Core.Application;
+using RealEstateApp.Infrastructure.Shared;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddApplicationLayer();
+builder.Services.AddSharedInfrastructure(builder.Configuration);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
