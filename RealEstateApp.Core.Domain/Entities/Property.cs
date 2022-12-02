@@ -18,7 +18,7 @@ namespace RealEstateApp.Core.Domain.Entities
         public string AgentName { get; set; }
         public int AgentId { get; set; }
         public ICollection<Improvement> Improvements { get; set; }
-        public TypeOfPropery TypeOfPropery { get; set; }
+        public TypeOfProperty TypeOfPropery { get; set; }
         public TypeOfSale TypeOfSale { get; set; }
     }
 }

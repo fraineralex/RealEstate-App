@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealEstateApp.Core.Domain.Common;
+using RealEstateApp.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace RealEstateApp.Infrastructure.Persistence.Contexts
 {
     public class ApplicationContext : DbContext
     {
+      
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
