@@ -31,7 +31,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers
         }
 
         [HttpPost("RegisterDeveloperUser")]
-        public async Task<IActionResult> RegisterWaiterAsync(RegisterRequest request)
+        public async Task<IActionResult> RegisterDeveloperAsync(RegisterRequest request)
         {
             var origin = Request.Headers["origin"];
             return Ok(await _accountService.RegisterUserAsync(request, origin, Roles.Developer));
