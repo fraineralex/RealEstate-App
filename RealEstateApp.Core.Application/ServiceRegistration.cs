@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using RealEstateApp.Core.Application.Interfaces.Services;
+using RealEstateApp.Core.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,12 @@ namespace RealEstateApp.Core.Application
         public static void AddApplicationLayer(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
+            #region Services
+            //services.AddTransient(typeof(IGenericService<,,>), typeof(GenericService<,,>));
+            services.AddTransient<IUserService, UserService>();
+            #endregion
         }
     }
 }

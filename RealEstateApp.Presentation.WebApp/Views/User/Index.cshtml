@@ -1,0 +1,44 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Users
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container-fluid">
+
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark">
+                    <h4 class="text-light">Login</h4>
+                </div>
+                <div class="card-body">
+                    @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+                    @if (Model.HasError)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p>@Model.Error</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    <form method="post" asp-controller="User" asp-action="Index">
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email:</label>
+                            <input class="form-control" asp-for="Email" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Password:</label>
+                            <input class="form-control" asp-for="Password" />
+                        </div>
+
+                        <a asp-controller="User" asp-action="ForgotPassword" class="btn btn-warning">Password Forgotten</a>
+                        <button type="submit" class="btn btn-primary float-end me-2">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
