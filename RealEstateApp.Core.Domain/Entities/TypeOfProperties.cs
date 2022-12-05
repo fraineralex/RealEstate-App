@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace RealEstateApp.Core.Domain.Entities
 {
-    public class TypeOfProperty: AuditableBaseEntity
+    public class TypeOfProperties: AuditableBaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int PropertyId { get; set; }
-        public Property MyProperty { get; set; }
+        public ICollection<Properties>? Properties { get; set; }
     }
 }

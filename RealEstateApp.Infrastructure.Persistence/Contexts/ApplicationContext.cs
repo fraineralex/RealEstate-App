@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealEstateApp.Core.Domain.Common;
 using RealEstateApp.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstateApp.Infrastructure.Persistence.Contexts
 {
@@ -13,6 +8,12 @@ namespace RealEstateApp.Infrastructure.Persistence.Contexts
     {
       
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
+
+        //public DbSet<Agents>? Agent { get; set; }
+        public DbSet<Properties>? Properties { get; set; }
+        public DbSet<Improvements>? Improvements { get; set; }
+        public DbSet<TypeOfProperties>? TypeOfProperties { get; set; }
+        public DbSet<TypeOfSales>? TypeOfSales { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -36,6 +37,51 @@ namespace RealEstateApp.Infrastructure.Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Fluent API
+            #region tables
+            modelBuilder.Entity<Properties>().ToTable("Properties");
+            modelBuilder.Entity<TypeOfProperties>().ToTable("TypeOfProperties");
+            modelBuilder.Entity<TypeOfSales>().ToTable("TypeOfSales");
+            modelBuilder.Entity<Improvements>().ToTable("Improvements");
+            #endregion
+
+            #region "primary keys"
+            modelBuilder.Entity<Properties>().HasKey(property => property.Id);
+            modelBuilder.Entity<TypeOfProperties>().HasKey(typeOfProperty => typeOfProperty.Id);
+            modelBuilder.Entity<TypeOfSales>().HasKey(typeOfSale => typeOfSale.Id);
+            modelBuilder.Entity<Improvements>().HasKey(improvement => improvement.Id);
+            #endregion
+
+            #region relationships
+
+            modelBuilder.Entity<Properties>()
+                 .HasOne(property => property.TypeOfProperty)
+                 .WithMany(typeOfProperty => typeOfProperty.Properties)
+                 .HasForeignKey(property => property.TypeOfPropertyId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Properties>()
+                 .HasOne(property => property.TypeOfSale)
+                 .WithMany(typeOfSale => typeOfSale.Properties)
+                 .HasForeignKey(property => property.TypeOfPropertyId)
+                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Properties>()
+                 .HasOne(property => property.Improvements)
+                 .WithMany(improvements => improvements.Properties)
+                 .HasForeignKey(property => property.TypeOfPropertyId)
+                 .OnDelete(DeleteBehavior.NoAction);
+            #endregion
+
+            #region "property configurations"
+
+            #region Properties
+            modelBuilder.Entity<Properties>()
+                .HasIndex(property => property.Code)
+                .IsUnique();
+            #endregion
+
+            #endregion
 
         }
     }
