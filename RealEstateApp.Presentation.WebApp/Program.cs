@@ -3,6 +3,7 @@ using RealEstateApp.Core.Application;
 using RealEstateApp.Infrastructure.Identity;
 using RealEstateApp.Infrastructure.Identity.Entities;
 using RealEstateApp.Infrastructure.Identity.Seeds;
+using RealEstateApp.Infrastructure.Persistence;
 using RealEstateApp.Infrastructure.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSession();
 builder.Services.AddApplicationLayer();
+builder.Services.AddControllersWithViews();
+builder.Services.AddPersistenceInfrastructure(builder.Configuration);
 builder.Services.AddSharedInfrastructure(builder.Configuration);
 builder.Services.AddIdentityInfrastructure(builder.Configuration);
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

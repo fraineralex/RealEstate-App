@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RealEstateApp.Core.Application.Interfaces.Repositories;
 using RealEstateApp.Infrastructure.Persistence.Contexts;
+using RealEstateApp.Infrastructure.Persistence.Repositories;
+using RealEstateApp.Infrastructure.Persistence.Repository;
 
 namespace RealEstateApp.Infrastructure.Persistence
 {
@@ -23,6 +26,8 @@ namespace RealEstateApp.Infrastructure.Persistence
             #endregion
 
             #region Repositories
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IImprovementsRepository, ImprovementsRepository>();
             #endregion
         }
     }

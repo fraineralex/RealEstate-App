@@ -26,8 +26,4 @@
     <ProjectReference Include="..\RealEstateApp.Infrastructure.Shared\RealEstateApp.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\v1\" />
-  </ItemGroup>
-
 </Project>
