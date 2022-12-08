@@ -52,7 +52,7 @@
 
                         <div class="mb-3">
                             <label asp-for="Email" class="form-label">Email:</label>
-                            <input asp-for="Email" class="form-control" required/>
+                            <input asp-for="Email" class="form-control"/>
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
@@ -77,14 +77,13 @@
 
                         <div class="mb-3">
                             <label for="role" class="form-label">User's Type:</label>
-                            <select for="role" class="form-select">
+                            <select for="role" class="form-select" required name="role">
                                 @foreach (var item in ViewBag.UserTypes)
                                 {
                                     <option value="@item">@item</option>
                                 }
                             </select>
                         </div>
-
 
 
                         <a asp-controller="User" asp-action="Index" class="btn btn-warning">Go back</a>

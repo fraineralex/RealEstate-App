@@ -40,17 +40,18 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             {
                 HttpContext.Session.Set<AuthenticationResponse>("user", userVm);
 
-                if(userVm.Roles.ToString() == Roles.Client.ToString())
+
+                if(userVm.Roles.FirstOrDefault() == Roles.Client.ToString())
                 {
                     return RedirectToRoute(new { controller = "Client", action = "Index" });
                 }
 
-                else if (userVm.Roles.ToString() == Roles.Agent.ToString())
+                else if (userVm.Roles.FirstOrDefault() == Roles.Agent.ToString())
                 {
                     return RedirectToRoute(new { controller = "Agent", action = "Index" });
                 }
 
-                else if (userVm.Roles.ToString() == Roles.Developer.ToString())
+                else if (userVm.Roles.FirstOrDefault() == Roles.Developer.ToString())
                 {
                     // HAY QUE DECIRLE QUE NO PUEDE ENTRAR A LA APP
                     return RedirectToRoute(new { controller = "User", action = "AccessDenied" });

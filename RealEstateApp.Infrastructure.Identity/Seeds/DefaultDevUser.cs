@@ -11,7 +11,7 @@ namespace RealEstateApp.Infrastructure.Identity.Seeds
         {
 
             ApplicationUser defaultUser = new();
-            defaultUser.UserName = "adminUser";
+            defaultUser.UserName = "devUser";
             defaultUser.Email = "developer@email.com";
             defaultUser.FirstName = "Dev FirstName";
             defaultUser.LastName = "Dev LastName";
