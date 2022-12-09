@@ -20,7 +20,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> List()
         {
             try
             {
@@ -28,7 +28,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 
                 if (typeOfProperties == null || typeOfProperties.Count == 0)
                 {
-                    return NotFound();
+                    return NotFound("No existen tipos de ventas.");
                 }
 
                 return Ok(typeOfProperties);
@@ -43,7 +43,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 
                 if (category == null)
                 {
-                    return NotFound();
+                    return NotFound("No existe el tipo de venta.");
                 }
 
                 return Ok(category);
@@ -66,7 +66,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Post(SaveTypeOfSalesViewModel vm)
+        public async Task<IActionResult> Create(SaveTypeOfSalesViewModel vm)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Put(int id, SaveTypeOfSalesViewModel vm)
+        public async Task<IActionResult> Update(int id, SaveTypeOfSalesViewModel vm)
         {
             try
             {
