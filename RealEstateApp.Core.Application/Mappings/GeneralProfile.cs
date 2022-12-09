@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
+using RealEstateApp.Core.Application.ViewModels.Properties;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
 using RealEstateApp.Core.Application.ViewModels.TypeOfSales;
 using RealEstateApp.Core.Application.ViewModels.Users;
@@ -93,6 +94,23 @@ namespace RealEstateApp.Core.Application.Mappings
 
             #endregion
 
+
+            #region Properties
+
+            // CreateMap<Properties, SavePropertiesViewModel>()
+
+
+            CreateMap<UpdateAgentUserRequest, SaveAgentProfileViewModel>()
+                .ReverseMap()
+                .ForMember(x => x.UserName, opt => opt.Ignore());
+
+            CreateMap<SaveAgentProfileViewModel, UpdateAgentUserResponse>()
+               .ReverseMap()
+                .ForMember(x => x.File, opt => opt.Ignore());
+
+
+
+            #endregion
         }
     }
 }

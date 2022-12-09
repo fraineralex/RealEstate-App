@@ -217,6 +217,57 @@ namespace RealEstateApp.Infrastructure.Identity.Services
 
         }
 
+        public async Task<UpdateAgentUserResponse> UpdateAgentUserByUserNameAsync(UpdateAgentUserRequest request)
+        {
+            UpdateAgentUserResponse response = new() { HasError = false};
+
+            var user = _userManager.FindByNameAsync(request.UserName).Result;
+
+            if (user == null)
+            {
+                response.HasError = true;
+                response.Error = "Agent User Not Found";
+                return response;
+            }
+
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.Phone;
+            user.ImagePath = request.ImagePath;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                response.HasError = true;
+                response.Error = "An Error Ocurred While Changing The User Data";
+                return response;
+            }
+
+            return response;
+        }
+
+        public async Task<UpdateAgentUserResponse>GetAgentUserByUserNameAsync(string userName)
+        {
+            UpdateAgentUserResponse response = new() { HasError = false };
+
+            var user = _userManager.FindByNameAsync(userName).Result;
+
+            if (user == null)
+            {
+                response.HasError = true;
+                response.Error = "Agent User Not Found";
+                return response;
+            }
+
+            response.FirstName = user.FirstName;
+            response.LastName = user.LastName;
+            response.Phone = user.PhoneNumber;
+            response.ImagePath = user.ImagePath;
+
+            return response;
+        }
+
 
         #region "Private Methods"
 

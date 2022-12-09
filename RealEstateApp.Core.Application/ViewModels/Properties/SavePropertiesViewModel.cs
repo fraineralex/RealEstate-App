@@ -8,5 +8,6 @@ namespace RealEstateApp.Core.Application.ViewModels.Properties
 {
     public class SavePropertiesViewModel
     {
+
     }
 }

@@ -12,6 +12,7 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordRequest request, string origin);
         Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordRequest request);
 
-
+        Task<UpdateAgentUserResponse> UpdateAgentUserByUserNameAsync(UpdateAgentUserRequest request);
+        Task<UpdateAgentUserResponse> GetAgentUserByUserNameAsync(string userName);
     }
 }

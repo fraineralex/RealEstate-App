@@ -23,6 +23,7 @@ namespace RealEstateApp.Core.Application
             services.AddTransient<ITypeOfPropertiesService, TypeOfPropertiesService>();
             services.AddTransient<ITypeOfSalesService, TypeOfSalesService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPropertiesService, PropertiesService>();
             #endregion
         }
     }
