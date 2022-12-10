@@ -18,8 +18,5 @@ namespace RealEstateApp.Infrastructure.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
-
-
-
     }
 }

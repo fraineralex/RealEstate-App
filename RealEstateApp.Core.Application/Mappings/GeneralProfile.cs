@@ -94,7 +94,6 @@ namespace RealEstateApp.Core.Application.Mappings
 
             #endregion
 
-
             #region Properties
 
             // CreateMap<Properties, SavePropertiesViewModel>()
@@ -108,7 +107,19 @@ namespace RealEstateApp.Core.Application.Mappings
                .ReverseMap()
                 .ForMember(x => x.File, opt => opt.Ignore());
 
+            CreateMap<Properties, SavePropertiesViewModel>()
+              .ReverseMap()
+              .ForMember(x => x.Created, opt => opt.Ignore())
+              .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+              .ForMember(x => x.LastModified, opt => opt.Ignore())
+              .ForMember(x => x.LastModifiedBy, opt => opt.Ignore());
 
+            CreateMap<Properties, PropertiesViewModel>()
+             .ReverseMap()
+             .ForMember(x => x.Created, opt => opt.Ignore())
+             .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+             .ForMember(x => x.LastModified, opt => opt.Ignore())
+             .ForMember(x => x.LastModifiedBy, opt => opt.Ignore());
 
             #endregion
         }
