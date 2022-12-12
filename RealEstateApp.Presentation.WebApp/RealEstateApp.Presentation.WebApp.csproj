@@ -24,4 +24,8 @@
     <Folder Include="wwwroot\Images\Users\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\profile.jpeg" />
+  </ItemGroup>
+
 </Project>
