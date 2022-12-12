@@ -58,6 +58,10 @@ namespace RealEstateApp.Core.Application.Services
 
         public async Task<SavePropertiesViewModel> CustomAdd(SavePropertiesViewModel savePropertiesViewModel)
         {
+            var records = await _repository.GetAllAsync();
+            var exisCode = records.FirstOrDefault(x => x.Code == savePropertiesViewModel.Code);
+            if (exisCode is not null) throw new Exception("El codigo existe.");
+
             var existImprovement = await _improvementsRepository.GetByIdAsync(savePropertiesViewModel.ImprovementsId);
             if (existImprovement is null) throw new Exception("La mejora especificada no existe.");
 
@@ -81,7 +85,7 @@ namespace RealEstateApp.Core.Application.Services
         public async Task<List<PropertiesViewModel>> GetAllWithData()
         {
             var result = await _repository.GetAllWithIncludeAsync(new List<string> { "Improvements", "TypeOfProperty", "TypeOfSale" });
-            
+            result.OrderByDescending(x => x.Created);
             return _mapper.Map<List<PropertiesViewModel>>(result);
         }
 
