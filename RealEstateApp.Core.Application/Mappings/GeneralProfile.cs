@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using RealEstateApp.Core.Application.DTOs.Account;
+using RealEstateApp.Core.Application.Features.Improvements.Commands.CreateImprovements;
+using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties;
+using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 using RealEstateApp.Core.Application.ViewModels.Properties;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
@@ -120,6 +123,31 @@ namespace RealEstateApp.Core.Application.Mappings
              .ForMember(x => x.CreatedBy, opt => opt.Ignore())
              .ForMember(x => x.LastModified, opt => opt.Ignore())
              .ForMember(x => x.LastModifiedBy, opt => opt.Ignore());
+
+            #endregion
+
+            #region CQRS
+
+            CreateMap<CreateImprovementsCommand, Improvements>()
+            .ForMember(x => x.Created, opt => opt.Ignore())
+            .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+            .ForMember(x => x.LastModified, opt => opt.Ignore())
+            .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
+            .ReverseMap();
+
+            CreateMap<CreateTypeOfPropertiesCommand, TypeOfProperties>()
+            .ForMember(x => x.Created, opt => opt.Ignore())
+            .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+            .ForMember(x => x.LastModified, opt => opt.Ignore())
+            .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
+            .ReverseMap();
+
+            CreateMap<CreateTypeOfSalesCommand, TypeOfSales>()
+            .ForMember(x => x.Created, opt => opt.Ignore())
+            .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+            .ForMember(x => x.LastModified, opt => opt.Ignore())
+            .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
+            .ReverseMap();
 
             #endregion
         }

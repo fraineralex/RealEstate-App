@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetAllTypeOfSales;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetTypeOfSalesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
@@ -57,16 +58,11 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Create(SaveTypeOfSalesViewModel vm)
+        public async Task<IActionResult> Create(CreateTypeOfSalesCommand command)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest();
-                }
-
-                await _typeOfSalesService.Add(vm);
+                await Mediator.Send(command);
                 return NoContent();
             }
             catch (Exception ex)

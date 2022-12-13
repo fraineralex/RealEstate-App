@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.Improvements.Commands.CreateImprovements;
 using RealEstateApp.Core.Application.Features.Improvements.Queries.GetAllImprovements;
 using RealEstateApp.Core.Application.Features.Improvements.Queries.GetImprovementsById;
 using RealEstateApp.Core.Application.Interfaces.Services;
@@ -57,16 +58,11 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Create(SaveImprovementsViewModel vm)
+        public async Task<IActionResult> Create(CreateImprovementsCommand command)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest();
-                }
-
-                await _improvementsService.Add(vm);
+                await Mediator.Send(command);
                 return NoContent();
             }
             catch (Exception ex)
