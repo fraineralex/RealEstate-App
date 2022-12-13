@@ -19,5 +19,6 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordViewModel vm, string origin);
         Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordViewModel vm);
         Task<HomeAdminViewModel> GetUsersQuantity();
+        Task<List<UserViewModel>> GetAllUsersViewModels();
     }
 }

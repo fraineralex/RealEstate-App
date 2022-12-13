@@ -10,6 +10,7 @@ namespace RealEstateApp.Core.Domain.Entities
     public class Properties: AuditableBaseEntity
     {
         public string Code { get; set; }
+        public string AgentId { get; set; }
         public decimal Price { get; set; }
         public int LandSize { get; set; }
         public int NumberOfRooms { get; set; }

@@ -13,6 +13,7 @@ namespace RealEstateApp.Core.Application.ViewModels.Properties
     {
         public int Id { get; set; }
         public string Code { get; set; }
+        public string? AgentId { get; set; }
         public decimal Price { get; set; }
         public int LandSize { get; set; }
         public int NumberOfRooms { get; set; }
