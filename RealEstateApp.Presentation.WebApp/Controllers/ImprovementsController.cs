@@ -58,5 +58,29 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             return RedirectToRoute(new { controller = "Improvements", action = "Index" });
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _improvementsService.Delete(id);
+            return RedirectToRoute(new { controller = "Improvements", action = "Index" });
+        }
+
+        public async Task<IActionResult> Update(int id)
+        {
+            SaveImprovementsViewModel improvementsSaveViewModel = await _improvementsService.GetByIdSaveViewModel(id);
+
+            return View("UpdateImprovement", improvementsSaveViewModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Update(SaveImprovementsViewModel improvementsSaveViewModel)
+        {
+            await _improvementsService.Update(improvementsSaveViewModel, improvementsSaveViewModel.Id);
+
+            return RedirectToRoute(new { controller = "Improvements", action = "Index" });
+        }
+
     }
 }

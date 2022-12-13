@@ -1,0 +1,58 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Improvements
+@model SaveImprovementsViewModel
+
+@{
+    ViewData["Title"] = "Updating improvement";
+}
+
+<main>
+
+    <section class="container">
+        <div class="row mx-auto">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-bold mt-4 text-center text-primary"><i class="bi bi-rocket-takeoff-fill"></i> Improvements</h1>
+                <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                    Here you can manager the improvements of the system. <i class="text-white">🚀</i>
+                </p>
+            </div>
+
+                @Html.ValidationMessage("ActiveSuccess", "",new{@class = "text-success text-center fw-bold mt-4 mb-3"}, "h4")
+                @Html.ValidationMessage("ActiveError", "",new{@class = "text-danger text-center fw-bold mt-4 mb-3"}, "h4")
+
+
+                <div class="col-6 mx-auto card bg-dark text-white mt-5 mb-5" style="border-radius: 1rem;">
+                    <div class="card-body">
+
+                        <h2 class="fw-bold mb-3 text-uppercase text-center mt-2">Updating Improvement</h2>
+                        <p class="text-white-50 fs-5 mb-3 text-center">Please fill in the fields below</p>
+                        @Html.ValidationMessage("userVaidation", "",new{@class = "text-danger text-center fw-bold fs-5 mb-3"}, "h4")
+
+                        <form asp-action="Update" asp-controller="Improvements" method="POST">
+
+                            <div class="p-3">
+                                <label asp-for="Name" class="form-label text-white"><strong>Name <small class="text-danger"> *</small></strong></label>
+                                <input type="text" class="form-control bg-dark text-white border-white form-control-lg" asp-for="Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="p-3 pt-0 mb-3">
+                                <label asp-for="Description" class="form-label text-white"><strong>Description <small class="text-danger"> *</small></strong></label>
+                                    <textarea type="text"
+                                           class="form-control bg-dark text-white border-white form-control-lg"
+                                      asp-for="Description" rows="4"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <button class="btn btn-primary  btn-lg float-end" type="submit">
+                            <i class="bi bi-check2-square"></i>
+                                Done
+                            </button>
+                            <a class="btn btn-light  btn-lg float-end me-2" asp-controller="Improvements" asp-action="Index"><i class="bi bi-arrow-return-left"></i> Back</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>

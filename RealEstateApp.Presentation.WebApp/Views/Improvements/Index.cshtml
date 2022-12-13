@@ -5,6 +5,7 @@
 @model List<ImprovementsViewModel>
 @inject IHttpContextAccessor httpContextAccesor
 @{
+    ViewData["Title"] = "Improvements";
     var currentlyUser = httpContextAccesor.HttpContext.Session.Get<AuthenticationResponse>("user");
 }
 
@@ -35,7 +36,7 @@
 
                         <h4 class="fw-bold mb-3 text-uppercase mt-2 fs-5"><i class="bi bi-rocket-takeoff-fill"></i> <i class="text-white"> @improvements.Name</i></h4>
                         <p class="fs-6 text-primary fw-bold">@improvements.Description </p>
-                        <a asp-controller="Improvements" asp-action="Delete" asp-route-id="@improvements.Id" class="btn btn-sm btn-danger float-end"><i class="bi bi-trash-fill"></i></a>
+                        <a class="btn btn-sm btn-danger float-end" onclick="Delete(@improvements.Id, 'Improvements', 'Improvement')"><i class="bi bi-trash-fill"></i></a>
                         <a asp-controller="Improvements" asp-action="Update" asp-route-id="@improvements.Id" class="btn btn-sm btn-info float-end me-2"><i class="bi bi-pencil-square"></i></a>
 
                     </div>
@@ -46,6 +47,6 @@
     else
     {
 
-        <h5 class="fs-4 fw-bold text-secondary mt-1 text-center mb-5"><i class='bx bxs-contact'></i> No improvements yet</h5>
+        <h5 class="fs-4 fw-bold text-secondary mt-1 text-center mb-5"><i class="bi bi-rocket-takeoff-fill"></i> No improvements yet</h5>
     }
 </div>
