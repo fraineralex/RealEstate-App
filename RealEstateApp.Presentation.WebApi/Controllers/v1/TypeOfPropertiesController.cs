@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.DeleteImprovementsById;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties;
+using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.DeleteTypeOfPropertiesById;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.UpdateTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetAllTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetTypeOfPropertiesById;
@@ -110,7 +111,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                await Mediator.Send(new DeleteImprovementsByIdCommand { Id = id });
+                await Mediator.Send(new DeleteTypeOfPropertiesByIdCommand { Id = id });
                 return NoContent();
             }
             catch (Exception ex)

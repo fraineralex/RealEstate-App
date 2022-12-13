@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.DeleteTypeOfPropertiesById;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
+using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.DeleteTypeOfSales;
+using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.UpdateTypeOfSales;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetAllTypeOfSales;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetTypeOfSalesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
@@ -76,7 +79,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Update(int id, SaveTypeOfSalesViewModel vm)
+        public async Task<IActionResult> Update(int id, TypeOfSalesUpdateCommand command)
         {
             try
             {
@@ -84,9 +87,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
                 {
                     return BadRequest();
                 }
+                if (id != command.Id)
+                {
+                    return BadRequest();
+                }
 
-                await _typeOfSalesService.Update(vm, id);
-                return Ok(vm);
+                return Ok(await Mediator.Send(command));
             }
             catch (Exception ex)
             {
@@ -101,7 +107,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                await _typeOfSalesService.Delete(id);
+                await Mediator.Send(new DeleteTypeOfSalesByIdCommand { Id = id });
                 return NoContent();
             }
             catch (Exception ex)
