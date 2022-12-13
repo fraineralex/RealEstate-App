@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.Properties.Queries.GetAllProperties;
+using RealEstateApp.Core.Application.Features.Properties.Queries.GetPropertiesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.Properties;
 
@@ -24,13 +26,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var properties = await _propertiesService.GetAllWithData();
-
-                if (properties == null || properties.Count == 0)
-                {
-                    return NotFound("No existen propiedades.");
-                }
-
+                var properties = await Mediator.Send(new GetAllPropertiesQuery());
                 return Ok(properties);
             }
             catch (Exception ex)
@@ -40,21 +36,15 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SavePropertiesViewModel))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PropertiesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var category = await _propertiesService.GetByIdWithData(id);
-
-                if (category == null)
-                {
-                    return NotFound("No existe la propiedad.");
-                }
-
-                return Ok(category);
+                var property = await Mediator.Send(new GetPropertiesByIdQuery { Id = id });
+                return Ok(property);
             }
             catch (Exception ex)
             {
@@ -63,21 +53,15 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         } 
         
         [HttpGet("{code}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SavePropertiesViewModel))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PropertiesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetByCode(string code)
         {
             try
             {
-                var category = await _propertiesService.GetByCode(code);
-
-                if (category == null)
-                {
-                    return NotFound("No existe la propiedad.");
-                }
-
-                return Ok(category);
+                var property = await Mediator.Send(new GetPropertiesByCodeQuery { Code = code });
+                return Ok(property);
             }
             catch (Exception ex)
             {
