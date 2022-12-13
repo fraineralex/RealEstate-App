@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.CreateImprovements;
+using RealEstateApp.Core.Application.Features.Improvements.Commands.UpdateImprovements;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
@@ -148,6 +149,20 @@ namespace RealEstateApp.Core.Application.Mappings
             .ForMember(x => x.LastModified, opt => opt.Ignore())
             .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
             .ReverseMap();
+
+            CreateMap<UpdateImprovementsCommand, Improvements>()
+                .ForMember(x => x.Created, opt => opt.Ignore())
+                .ForMember(x => x.LastModified, opt => opt.Ignore())
+                .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
+                .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+                .ReverseMap();
+
+            CreateMap<UpdateImprovementsResponse, Improvements>()
+                .ForMember(x => x.Created, opt => opt.Ignore())
+                .ForMember(x => x.LastModified, opt => opt.Ignore())
+                .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
+                .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+                .ReverseMap();
 
             #endregion
         }

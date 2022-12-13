@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.CreateImprovements;
+using RealEstateApp.Core.Application.Features.Improvements.Commands.DeleteImprovementsById;
+using RealEstateApp.Core.Application.Features.Improvements.Commands.UpdateImprovements;
 using RealEstateApp.Core.Application.Features.Improvements.Queries.GetAllImprovements;
 using RealEstateApp.Core.Application.Features.Improvements.Queries.GetImprovementsById;
 using RealEstateApp.Core.Application.Interfaces.Services;
@@ -76,7 +78,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveImprovementsViewModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Update(int id, SaveImprovementsViewModel vm)
+        public async Task<IActionResult> Update(int id, UpdateImprovementsCommand command)
         {
             try
             {
@@ -85,8 +87,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
                     return BadRequest();
                 }
 
-                await _improvementsService.Update(vm, id);
-                return Ok(vm);
+                if (id != command.Id)
+                {
+                    return BadRequest();
+                }
+
+                return Ok(await Mediator.Send(command));
             }
             catch (Exception ex)
             {
@@ -101,7 +107,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                await _improvementsService.Delete(id);
+                await Mediator.Send(new DeleteImprovementsByIdCommand { Id = id });
                 return NoContent();
             }
             catch (Exception ex)
