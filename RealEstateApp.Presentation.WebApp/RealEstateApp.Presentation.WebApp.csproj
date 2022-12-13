@@ -28,4 +28,11 @@
     <None Include="wwwroot\Images\profile.jpeg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Admin\AgentsList.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

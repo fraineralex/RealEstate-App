@@ -2,12 +2,9 @@
 using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.Enums;
 using RealEstateApp.Core.Application.Interfaces.Services;
+using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace RealEstateApp.Core.Application.Services
 {
@@ -56,6 +53,11 @@ namespace RealEstateApp.Core.Application.Services
             ResetPasswordRequest resetRequest = _mapper.Map<ResetPasswordRequest>(vm);
             return await _accountService.ResetPasswordAsync(resetRequest);
 
+        }
+
+        public async Task<HomeAdminViewModel> GetUsersQuantity()
+        {
+            return await _accountService.GetUsersQuantity();
         }
 
     }

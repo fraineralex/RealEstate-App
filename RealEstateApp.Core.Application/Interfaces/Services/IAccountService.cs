@@ -1,5 +1,7 @@
 ﻿using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.Enums;
+using RealEstateApp.Core.Application.ViewModels.Admin;
+using RealEstateApp.Core.Application.ViewModels.Users;
 
 namespace RealEstateApp.Core.Application.Interfaces.Services
 {
@@ -14,5 +16,6 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
 
         Task<UpdateAgentUserResponse> UpdateAgentUserByUserNameAsync(UpdateAgentUserRequest request);
         Task<UpdateAgentUserResponse> GetAgentUserByUserNameAsync(string userName);
+        Task<HomeAdminViewModel> GetUsersQuantity();
     }
 }

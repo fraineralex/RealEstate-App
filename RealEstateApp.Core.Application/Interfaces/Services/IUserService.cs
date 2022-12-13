@@ -1,5 +1,6 @@
 ﻿using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.Enums;
+using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Users;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,6 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<string> ConfirmEmailAsync(string userId, string token);
         Task<ForgotPasswordResponse> ForgotPasswordAsync(ForgotPasswordViewModel vm, string origin);
         Task<ResetPasswordResponse> ResetPasswordAsync(ResetPasswordViewModel vm);
+        Task<HomeAdminViewModel> GetUsersQuantity();
     }
 }

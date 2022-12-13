@@ -190,6 +190,11 @@ body {
     background-color: var(--box3-color);
 }
 
+.boxes .box.box7 {
+    width: 100%;
+    background-color: var(--box1-color);
+}
+
 
 body {
     background: #E4E9F7;
