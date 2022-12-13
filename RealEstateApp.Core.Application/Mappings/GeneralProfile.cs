@@ -102,7 +102,25 @@ namespace RealEstateApp.Core.Application.Mappings
 
             #region Properties
 
-            // CreateMap<Properties, SavePropertiesViewModel>()
+            CreateMap<Properties, SavePropertiesViewModel>()
+              .ForMember(x => x.Improvements, opt => opt.Ignore())
+              .ForMember(x => x.TypeOfProperties, opt => opt.Ignore())
+              .ForMember(x => x.TypeOfSales, opt => opt.Ignore())
+              .ForMember(x => x.Improvements, opt => opt.Ignore())
+              .ForMember(x => x.ImageFileOne, opt => opt.Ignore())
+              .ForMember(x => x.ImageFileTwo, opt => opt.Ignore())
+              .ForMember(x => x.ImageFileThree, opt => opt.Ignore())
+              .ForMember(x => x.ImageFileFour, opt => opt.Ignore())
+              .ReverseMap()
+              .ForMember(x => x.Created, opt => opt.Ignore())
+              .ForMember(x => x.CreatedBy, opt => opt.Ignore())
+              .ForMember(x => x.LastModified, opt => opt.Ignore())
+              .ForMember(x => x.LastModifiedBy, opt => opt.Ignore())
+              .ForMember(x => x.Improvements, opt => opt.Ignore())
+              .ForMember(x => x.TypeOfProperty, opt => opt.Ignore())
+              .ForMember(x => x.TypeOfSale, opt => opt.Ignore());
+
+
 
 
             CreateMap<UpdateAgentUserRequest, SaveAgentProfileViewModel>()
