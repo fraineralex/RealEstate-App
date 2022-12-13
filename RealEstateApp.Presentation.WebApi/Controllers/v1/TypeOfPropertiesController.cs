@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.Improvements.Commands.DeleteImprovementsById;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties;
+using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.UpdateTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetAllTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetTypeOfPropertiesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
@@ -81,7 +83,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTypeOfPropertiesViewModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Update(int id, SaveTypeOfPropertiesViewModel vm)
+        public async Task<IActionResult> Update(int id, UpdateTypeOfPropertiesCommand command)
         {
             try
             {
@@ -89,9 +91,11 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
                 {
                     return BadRequest();
                 }
-
-                await _typeOfPropertiesService.Update(vm, id);
-                return Ok(vm);
+                if (id != command.Id)
+                {
+                    return BadRequest();
+                }
+                return Ok(await Mediator.Send(command));
             }
             catch (Exception ex)
             {
@@ -106,7 +110,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                await _typeOfPropertiesService.Delete(id);
+                await Mediator.Send(new DeleteImprovementsByIdCommand { Id = id });
                 return NoContent();
             }
             catch (Exception ex)
