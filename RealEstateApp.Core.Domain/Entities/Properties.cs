@@ -16,7 +16,7 @@ namespace RealEstateApp.Core.Domain.Entities
         public int NumberOfRooms { get; set; }
         public int NumberOfBathrooms { get; set; }
         public string Description { get; set; }
-        public string ImagePathOne { get; set; }
+        public string? ImagePathOne { get; set; }
         public string? ImagePathTwo { get; set; }
         public string? ImagePathThree { get; set; }
         public string? ImagePathFour { get; set; }
