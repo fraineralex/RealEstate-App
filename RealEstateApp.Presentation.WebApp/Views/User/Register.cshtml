@@ -40,6 +40,12 @@
                         </div>
 
                         <div class="mb-3">
+                            <label asp-for="IDCard" class="form-label">ID Card:</label>
+                            <input asp-for="IDCard" class="form-control" />
+                            <span asp-validation-for="IDCard" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
                             <label asp-for="UserName" class="form-label">Username:</label>
                             <input asp-for="UserName" class="form-control" />
                             <span asp-validation-for="UserName" class="text-danger"></span>

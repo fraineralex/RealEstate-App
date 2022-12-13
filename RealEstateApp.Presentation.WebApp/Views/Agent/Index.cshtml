@@ -21,4 +21,64 @@
         </div>
     </div>
 
+    <div class="row">
+
+        @if (Model == null || Model.Count == 0)
+        {
+
+            <h2>There is no existing or created Properties</h2>
+        }
+        else
+        {
+
+            @foreach (PropertiesViewModel property in Model)
+            {
+
+                <div class="col-4">
+                    <div class="card shadow-sm mb-3">
+                        <img class="bd-placeholder-img card-img-top" src="@property.ImagePathOne" />
+
+                        @*@if(property.ImagePathTwo != null && property.ImagePathTwo != ""){
+                            <img class="bd-placeholder-img card-img-top" src="@property.ImagePathTwo" />
+
+                        }
+
+                        @if (property.ImagePathThree != null && property.ImagePathThree != "")
+                        {
+                            <img class="bd-placeholder-img card-img-top" src="@property.ImagePathThree" />
+
+                        }
+
+                        @if (property.ImagePathFour != null && property.ImagePathFour != "")
+                        {
+                            <img class="bd-placeholder-img card-img-top" src="@property.ImagePathFour" />
+
+                        }*@
+
+                        <div class="card-body">
+                            <h4>Type of Property:@property.TypeOfProperty</h4>
+                            <p class="card-text">Code:@property.Code</p>
+                            <p class="card-text">Type of Sale:@property.TypeOfSale</p>
+                            <p class="card-text">Price:@property.Price</p>
+                            <p class="card-text">Number of Rooms:@property.NumberOfRooms</p>
+                            <p class="card-text">Number of Bathrooms:@property.NumberOfBathrooms</p>
+                            <p class="card-text">Land Size:@property.LandSize mt</p>
+
+                            <a asp-controller="Agent" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-info">Edit</a>
+                            <a asp-controller="Agent" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+
+
+
+
+
+    </div>
+
     </section>

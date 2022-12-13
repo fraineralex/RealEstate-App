@@ -62,7 +62,7 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
                 vm.Improvements = await _improvementsService.GetAllViewModel();
                 return View("SaveProperty", vm);
             }
-
+            vm.AgentId = userviewModel.Id;
             SavePropertiesViewModel savePropertiesVmAdded = await _propertiesService.CustomAdd(vm);
 
             if (savePropertiesVmAdded != null && savePropertiesVmAdded.Id != 0)
@@ -93,6 +93,11 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var vm = await _propertiesService.GetByIdWithData(id);
+            return View("SaveProperty", vm);
+        }
 
 
 

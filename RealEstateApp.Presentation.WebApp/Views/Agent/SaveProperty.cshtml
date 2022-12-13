@@ -21,22 +21,20 @@
                     @if(Model.TypeOfProperties == null || Model.TypeOfProperties.Count == 0) 
                     {
                         <h4>You must have Properties created</h4>
-                        <a asp-controller="Agent" asp-action="Index" class="btn btn-warning">Go back</a>
                     }
 
                     @if (Model.TypeOfSales == null || Model.TypeOfSales.Count == 0)
                     {
                         <h4>You must have Types of Sales created</h4>
-                        <a asp-controller="Agent" asp-action="Index" class="btn btn-warning">Go back</a>
                     }
 
                     @if (Model.Improvements == null || Model.Improvements.Count == 0)
                     {
                         <h4>You must have Improvements created</h4>
-                        <a asp-controller="Agent" asp-action="Index" class="btn btn-warning">Go back</a>
                     }
 
-                    else{
+                    @if (Model.TypeOfProperties.Count != 0 && Model.TypeOfSales.Count == 0 && Model.Improvements.Count == 0)
+                    {
                         <form method="post" asp-controller="Agent" asp-action="@(editMode ? "Edit":"Create")" enctype="multipart/form-data">
 
                             <div class="mb-3">
@@ -91,6 +89,7 @@
                             {
                                 <div class="mb-3">
                                     <div class="form-check">
+                                        <label class="form-label">Improvements:</label>
                                         <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImpsId" id="improvement-@improvements.Id" />
                                         <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
                                     </div>
@@ -146,6 +145,9 @@
 
                     }
 
+                    else{
+                        <a asp-controller="Agent" asp-action="Index" class="btn btn-warning">Go back</a>
+                    }
                     
 
 

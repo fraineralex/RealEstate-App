@@ -26,7 +26,7 @@ namespace RealEstateApp.Core.Application.ViewModels.Properties
         public int ImprovementsId { get; set; }
         public int TypeOfPropertyId { get; set; }
         public int TypeOfSaleId { get; set; }
-        public ImprovementsViewModel? Improvements { get; set; }
+        public List<ImprovementsViewModel>? Improvements { get; set; }
         public TypeOfPropertiesViewModel? TypeOfProperty { get; set; }
         public TypeOfSalesViewModel? TypeOfSale { get; set; }
     }
