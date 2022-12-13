@@ -7,7 +7,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class PropertiesController : ControllerBase
+    public class PropertiesController : BaseApiController
     {
         private readonly IPropertiesService _propertiesService;
 

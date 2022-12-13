@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.Improvements.Queries.GetAllImprovements;
+using RealEstateApp.Core.Application.Features.Improvements.Queries.GetImprovementsById;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 
@@ -8,7 +10,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
     [ApiVersion("1.0")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ImprovementsController : ControllerBase
+    public class ImprovementsController : BaseApiController
     {
         private readonly IImprovementsService _improvementsService;
 
@@ -25,13 +27,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var improvements = await _improvementsService.GetAllViewModel();
-
-                if (improvements == null || improvements.Count == 0)
-                {
-                    return NotFound("No existen mejoras.");
-                }
-
+                var improvements = await Mediator.Send(new GetAllImprovementsQuery());
                 return Ok(improvements);
             }
             catch (Exception ex)
@@ -48,13 +44,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var category = await _improvementsService.GetByIdSaveViewModel(id);
-
-                if (category == null)
-                {
-                    return NotFound("No existe la mejora.");
-                }
-
+                var category = await Mediator.Send(new GetImprovementsByIdQuery { Id = id });
                 return Ok(category);
             }
             catch (Exception ex)

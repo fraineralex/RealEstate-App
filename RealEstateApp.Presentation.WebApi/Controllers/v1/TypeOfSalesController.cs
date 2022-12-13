@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetAllTypeOfSales;
+using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetTypeOfSalesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.TypeOfSales;
 
@@ -7,7 +9,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeOfSalesController : ControllerBase
+    public class TypeOfSalesController : BaseApiController
     {
         private readonly ITypeOfSalesService _typeOfSalesService;
 
@@ -24,12 +26,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var typeOfProperties = await _typeOfSalesService.GetAllViewModel();
-
-                if (typeOfProperties == null || typeOfProperties.Count == 0)
-                {
-                    return NotFound("No existen tipos de ventas.");
-                }
+                var typeOfProperties = await Mediator.Send(new GetAllTypeOfSalesQuery());
 
                 return Ok(typeOfProperties);
             }
@@ -47,14 +44,8 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var category = await _typeOfSalesService.GetByIdSaveViewModel(id);
-
-                if (category == null)
-                {
-                    return NotFound("No existe el tipo de venta.");
-                }
-
-                return Ok(category);
+                var typeOfSale = await Mediator.Send(new GetTypeOfSalesByIdQuery { Id = id });
+                return Ok(typeOfSale);
             }
             catch (Exception ex)
             {

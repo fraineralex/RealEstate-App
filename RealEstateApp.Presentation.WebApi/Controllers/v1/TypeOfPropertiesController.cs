@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetAllTypeOfProperties;
+using RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetTypeOfPropertiesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
 
@@ -7,7 +9,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeOfPropertiesController : ControllerBase
+    public class TypeOfPropertiesController : BaseApiController
     {
         private readonly ITypeOfPropertiesService _typeOfPropertiesService;
 
@@ -24,13 +26,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var typeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
-
-                if (typeOfProperties == null || typeOfProperties.Count == 0)
-                {
-                    return NotFound("No existen tipos de propiedades.");
-                }
-
+                var typeOfProperties = await Mediator.Send(new GetAllTypeOfPropertiesQuery());
                 return Ok(typeOfProperties);
             }
             catch (Exception ex)
@@ -47,7 +43,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var category = await _typeOfPropertiesService.GetByIdSaveViewModel(id);
+                var category = await Mediator.Send(new GetTypeOfPropertiesByIdQuery { Id = id});
 
                 if (category == null)
                 {
