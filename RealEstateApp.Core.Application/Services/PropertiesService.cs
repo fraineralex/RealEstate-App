@@ -89,6 +89,13 @@ namespace RealEstateApp.Core.Application.Services
             return _mapper.Map<List<PropertiesViewModel>>(result);
         }
 
+        public async Task<List<PropertiesViewModel>> GetAll()
+        {
+            var result = await _repository.GetAllAsync();
+            result.OrderByDescending(x => x.Created);
+            return _mapper.Map<List<PropertiesViewModel>>(result);
+        }
+
         public async Task<PropertiesViewModel> GetByIdWithData(int id)
         {
             var exists = await _repository.GetByIdAsync(id);
