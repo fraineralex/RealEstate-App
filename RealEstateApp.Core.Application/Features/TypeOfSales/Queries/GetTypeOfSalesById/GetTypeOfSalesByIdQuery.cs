@@ -28,7 +28,7 @@ namespace RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetTypeOfS
         public async Task<TypeOfSalesViewModel> Handle(GetTypeOfSalesByIdQuery query, CancellationToken cancellationToken)
         {
             var TypeOfSale = await _TypeOfSalesRepository.GetByIdAsync(query.Id);
-            if (TypeOfSale is null) throw new Exception("Type of sale Not Found");
+            if (TypeOfSale is null) throw new Exception("No existe el tipo de venta.");
             var result = _mapper.Map<TypeOfSalesViewModel>(TypeOfSale);
             return result;
         }

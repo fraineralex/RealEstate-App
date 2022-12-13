@@ -32,7 +32,7 @@ namespace RealEstateApp.Core.Application.Features.Properties.Queries.GetAllPrope
             private async Task<List<PropertiesViewModel>> GetAllViewModel()
             {
                 var propertiesList = await _PropertiesRepository.GetAllAsync();
-                if (propertiesList.Count() == 0) throw new Exception("There are no properties.");
+                if (propertiesList.Count() == 0) throw new Exception("No existen propiedades.");
                 var result = await _PropertiesRepository.GetAllWithIncludeAsync(new List<string> { "Improvements", "TypeOfProperty", "TypeOfSale" });
                 return _mapper.Map<List<PropertiesViewModel>>(result);
             }

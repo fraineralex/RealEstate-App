@@ -28,7 +28,7 @@ namespace RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetTy
         public async Task<TypeOfPropertiesViewModel> Handle(GetTypeOfPropertiesByIdQuery query, CancellationToken cancellationToken)
         {
             var typeOfProperty = await _TypeOfPropertiesRepository.GetByIdAsync(query.Id);
-            if (typeOfProperty is null) throw new Exception("Type Of Property Not Found");
+            if (typeOfProperty is null) throw new Exception("No existe el tipo de propiedad.");
             var result = _mapper.Map<TypeOfPropertiesViewModel>(typeOfProperty);
             return result;
         }

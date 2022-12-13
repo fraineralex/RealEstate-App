@@ -29,7 +29,7 @@ namespace RealEstateApp.Core.Application.Features.Properties.Queries.GetProperti
         {
             var properties = await _PropertiesRepository.GetAllAsync();
             var property = properties.FirstOrDefault(x => x.Code == query.Code);
-            if (property is null) throw new Exception("There are no property.");
+            if (property is null) throw new Exception("No existe la propiedad.");
             var result = await _PropertiesRepository.GetAllWithIncludeAsync(new List<string> { "Improvements", "TypeOfProperty", "TypeOfSale" });
             return _mapper.Map<PropertiesViewModel>(property);
         }

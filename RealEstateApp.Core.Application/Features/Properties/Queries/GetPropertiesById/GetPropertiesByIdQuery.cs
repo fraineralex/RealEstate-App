@@ -28,7 +28,7 @@ namespace RealEstateApp.Core.Application.Features.Properties.Queries.GetProperti
         public async Task<PropertiesViewModel> Handle(GetPropertiesByIdQuery query, CancellationToken cancellationToken)
         {
             var property = await _PropertiesRepository.GetByIdAsync(query.Id);
-            if (property is null) throw new Exception("Property Not Found");
+            if (property is null) throw new Exception("No existe la propiedad.");
             var result = _mapper.Map<PropertiesViewModel>(property);
             return result;
         }

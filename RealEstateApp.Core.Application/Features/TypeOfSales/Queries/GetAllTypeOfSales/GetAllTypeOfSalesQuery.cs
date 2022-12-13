@@ -32,7 +32,7 @@ namespace RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetAllType
             private async Task<List<TypeOfSalesViewModel>> GetAllViewModel()
             {
                 var typeOfSalesList = await _TypeOfSalesRepository.GetAllAsync();
-                if (typeOfSalesList.Count() == 0) throw new Exception("There are no Type Of Sales.");
+                if (typeOfSalesList.Count() == 0) throw new Exception("No existen tipos de ventas.");
                 var result = _mapper.Map<List<TypeOfSalesViewModel>>(typeOfSalesList);
                 return result;
             }
