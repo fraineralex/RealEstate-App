@@ -13,33 +13,34 @@ sidebarBtn.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 });
 
-let btnAddImprovement = document.querySelector("#add-improvement");
+//let btnAddImprovement = document.querySelector("#add-improvement");
 
-btnAddImprovement.addEventListener("click", async () => {
-    const { value: improvement } = await Swal.fire({
-        title: "Adding Improvement",
-        html: `<form method="post" action="Improvements/Create" id="frm-add-improvement">
-          <label class="form-label fw-bold mt-2 float-start" for="improvement">Name</label>
-          <input id="improvement" type="text" class="form-control border-secondary border border-2" placeholder="Enter the name" name="ImprovementName" required>
+async function Create(name, controller) {
+
+    const { value: entity } = await Swal.fire({
+        title: `Adding ${name}`,
+        html: `<form method="post" action="${controller}/Create" id="frm-create">
+          <label class="form-label fw-bold mt-2 float-start" for="name">Name</label>
+          <input id="name" type="text" class="form-control border-secondary border border-2" placeholder="Enter the name" name="Name" required>
           <label class="form-label mt-3 fw-bold me-5 float-start" for="description">Description</label>
-          <textarea id="description" type="text" class="form-control border-secondary border border-2" placeholder="Enter the description" name="ImprovementDescription" rows="4" required></textarea>
+          <textarea id="description" type="text" class="form-control border-secondary border border-2" placeholder="Enter the description" name="Description" rows="4" required></textarea>
           </form>`,
         showCancelButton: true,
         focusConfirm: false,
         preConfirm: () => {
-            return [document.getElementById("improvement").value];
+            return [document.getElementById("name").value, document.getElementById("description").value ];
         },
     });
 
-    if (improvement) {
-        if (improvement.filter(Boolean).length < 1) {
-            Swal.fire("Error!", "The field account number can't be empty", "error");
+    if (entity) {
+        if (entity.filter(Boolean).length < 2) {
+            Swal.fire("Error!", "The fields can't be empty", "error");
         } else {
-            let form = document.querySelector("#frm-add-improvement");
+            let form = document.querySelector("#frm-create");
             form.submit();
         }
     }
-});
+};
 
 function Delete(Id, Controller, name) {
     Swal.fire({
