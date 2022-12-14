@@ -47,8 +47,8 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var category = await Mediator.Send(new GetImprovementsByIdQuery { Id = id });
-                return Ok(category);
+                var improvement = await Mediator.Send(new GetImprovementsByIdQuery { Id = id });
+                return Ok(improvement);
             }
             catch (Exception ex)
             {

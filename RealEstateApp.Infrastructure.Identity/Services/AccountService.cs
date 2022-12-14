@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using RealEstateApp.Core.Application.DTOs.Email;
 using RealEstateApp.Core.Application.ViewModels.Users;
 using RealEstateApp.Core.Application.ViewModels.Admin;
+using RealEstateApp.Core.Application.ViewModels.Agents;
 
 namespace RealEstateApp.Infrastructure.Identity.Services
 {
@@ -318,7 +319,54 @@ namespace RealEstateApp.Infrastructure.Identity.Services
 
             return response;
         }
+        public async Task<bool> ChangesStatusUser(string id, bool status)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user is null) throw new Exception("El usuario no existe.");
+            if(status == false)
+            {
+                user.EmailConfirmed = false;
+            } else
+            {
+                user.EmailConfirmed = true;
+            }
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded) return false;
+            else return true;
+        }
 
+        public async Task<List<AgentsViewModel>> GetAllAgents()
+        {
+            var agents = await _userManager.GetUsersInRoleAsync("Agent");
+            List<AgentsViewModel> response = new();
+            foreach (var user in agents)
+            {
+                AgentsViewModel agent = new();
+                agent.Id = user.Id;
+                agent.FirstName = user.FirstName;
+                agent.LastName = user.LastName;
+                agent.Email = user.Email;
+                agent.Phone = user.PhoneNumber;
+                response.Add(agent);
+            }
+            return response;
+        }
+        public async Task<List<AgentsViewModel>> GetAllUsers()
+        {
+            List<AgentsViewModel> response = new();
+            var users = _userManager.Users.ToList();
+            foreach (var user in users)
+            {
+                AgentsViewModel agent = new();
+                agent.Id = user.Id;
+                agent.FirstName = user.FirstName;
+                agent.LastName = user.LastName;
+                agent.Email = user.Email;
+                agent.Phone = user.PhoneNumber;
+                response.Add(agent);
+            }
+            return response;
+        }
         public async Task<List<UserViewModel>> GetAllUserViewModels() 
         {
             List<UserViewModel> response = new();
