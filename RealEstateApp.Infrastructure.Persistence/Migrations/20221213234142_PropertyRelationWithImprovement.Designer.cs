@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealEstateApp.Infrastructure.Persistence.Contexts;
 
@@ -11,9 +12,10 @@ using RealEstateApp.Infrastructure.Persistence.Contexts;
 namespace RealEstateApp.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221213234142_PropertyRelationWithImprovement")]
+    partial class PropertyRelationWithImprovement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,21 @@ namespace RealEstateApp.Infrastructure.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ImprovementsProperties", b =>
+                {
+                    b.Property<int>("ImprovementsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PropertiesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImprovementsId", "PropertiesId");
+
+                    b.HasIndex("PropertiesId");
+
+                    b.ToTable("ImprovementsProperties");
+                });
 
             modelBuilder.Entity("RealEstateApp.Core.Domain.Entities.Improvements", b =>
                 {
@@ -127,26 +144,6 @@ namespace RealEstateApp.Infrastructure.Persistence.Migrations
                     b.ToTable("Properties", (string)null);
                 });
 
-            modelBuilder.Entity("RealEstateApp.Core.Domain.Entities.PropertiesImprovements", b =>
-                {
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ImprovementId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.HasKey("PropertyId", "ImprovementId");
-
-                    b.HasIndex("ImprovementId");
-
-                    b.ToTable("PropertiesImprovements");
-                });
-
             modelBuilder.Entity("RealEstateApp.Core.Domain.Entities.TypeOfProperties", b =>
                 {
                     b.Property<int>("Id")
@@ -213,6 +210,21 @@ namespace RealEstateApp.Infrastructure.Persistence.Migrations
                     b.ToTable("TypeOfSales", (string)null);
                 });
 
+            modelBuilder.Entity("ImprovementsProperties", b =>
+                {
+                    b.HasOne("RealEstateApp.Core.Domain.Entities.Improvements", null)
+                        .WithMany()
+                        .HasForeignKey("ImprovementsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealEstateApp.Core.Domain.Entities.Properties", null)
+                        .WithMany()
+                        .HasForeignKey("PropertiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RealEstateApp.Core.Domain.Entities.Properties", b =>
                 {
                     b.HasOne("RealEstateApp.Core.Domain.Entities.TypeOfProperties", "TypeOfProperty")
@@ -230,25 +242,6 @@ namespace RealEstateApp.Infrastructure.Persistence.Migrations
                     b.Navigation("TypeOfProperty");
 
                     b.Navigation("TypeOfSale");
-                });
-
-            modelBuilder.Entity("RealEstateApp.Core.Domain.Entities.PropertiesImprovements", b =>
-                {
-                    b.HasOne("RealEstateApp.Core.Domain.Entities.Improvements", "Improvement")
-                        .WithMany()
-                        .HasForeignKey("ImprovementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RealEstateApp.Core.Domain.Entities.Properties", "Property")
-                        .WithMany()
-                        .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Improvement");
-
-                    b.Navigation("Property");
                 });
 
             modelBuilder.Entity("RealEstateApp.Core.Domain.Entities.TypeOfProperties", b =>

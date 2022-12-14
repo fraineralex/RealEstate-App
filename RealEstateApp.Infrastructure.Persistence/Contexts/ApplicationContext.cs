@@ -14,6 +14,7 @@ namespace RealEstateApp.Infrastructure.Persistence.Contexts
         public DbSet<Improvements>? Improvements { get; set; }
         public DbSet<TypeOfProperties>? TypeOfProperties { get; set; }
         public DbSet<TypeOfSales>? TypeOfSales { get; set; }
+        public DbSet<PropertiesImprovements>? PropertiesImprovements { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -67,10 +68,21 @@ namespace RealEstateApp.Infrastructure.Persistence.Contexts
                  .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Properties>()
-                 .HasOne(property => property.Improvements)
-                 .WithMany(improvements => improvements.Properties)
-                 .HasForeignKey(property => property.TypeOfPropertyId)
-                 .OnDelete(DeleteBehavior.NoAction);
+                 .HasMany(property => property.Improvements)
+                 .WithMany(improvement => improvement.Properties)
+                 .UsingEntity<PropertiesImprovements>(
+                    propImp => propImp.HasOne(prop => prop.Improvement)
+                    .WithMany()
+                    .HasForeignKey(prop => prop.ImprovementId),
+                    propImp => propImp.HasOne(prop => prop.Property)
+                    .WithMany()
+                    .HasForeignKey(prop => prop.PropertyId),
+                    propImp =>
+                    {
+                        propImp.Property(prop => prop.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+                        propImp.HasKey(propImp => new {propImp.PropertyId, propImp.ImprovementId});
+                    }
+                );
             #endregion
 
             #region "property configurations"

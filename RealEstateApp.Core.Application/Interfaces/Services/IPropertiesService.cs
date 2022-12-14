@@ -17,5 +17,11 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<SaveAgentProfileViewModel> UpdateAgentProfile(SaveAgentProfileViewModel agentProfileViewModel);
         Task<SaveAgentProfileViewModel> GetAgentUserByUserNameAsync(string userName);
         Task<List<PropertiesViewModel>> GetAll();
+
+        Task<SavePropertiesViewModel> AddWithImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel);
+
+        Task AddImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel);
+        Task<List<PropertiesViewModel>> GetAllWithProperties();
+
     }
 }

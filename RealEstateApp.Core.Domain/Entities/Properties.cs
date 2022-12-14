@@ -20,10 +20,10 @@ namespace RealEstateApp.Core.Domain.Entities
         public string? ImagePathTwo { get; set; }
         public string? ImagePathThree { get; set; }
         public string? ImagePathFour { get; set; }
-        public int ImprovementsId { get; set; }
+        //public int ImprovementsId { get; set; }
         public int TypeOfPropertyId { get; set; }
         public int TypeOfSaleId { get; set; }
-        public Improvements? Improvements { get; set; }
+        public ICollection<Improvements>? Improvements { get; set; }
         public TypeOfProperties? TypeOfProperty { get; set; }
         public TypeOfSales? TypeOfSale { get; set; }
     }

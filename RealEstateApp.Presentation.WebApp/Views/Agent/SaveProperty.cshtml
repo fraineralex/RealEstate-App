@@ -33,7 +33,7 @@
                         <h4>You must have Improvements created</h4>
                     }
 
-                    @if (Model.TypeOfProperties.Count != 0 && Model.TypeOfSales.Count == 0 && Model.Improvements.Count == 0)
+                    @if (Model.TypeOfProperties.Count != 0 && Model.TypeOfSales.Count != 0 && Model.Improvements.Count != 0)
                     {
                         <form method="post" asp-controller="Agent" asp-action="@(editMode ? "Edit":"Create")" enctype="multipart/form-data">
 
@@ -85,12 +85,12 @@
                                 <span asp-validation-for="NumberOfBathrooms" class="text-danger"></span>
                             </div>
 
+                            <label class="form-label">Improvements:</label>
                             @foreach (ImprovementsViewModel improvements in Model.Improvements)
                             {
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <label class="form-label">Improvements:</label>
-                                        <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImpsId" id="improvement-@improvements.Id" />
+                                        <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" />
                                         <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
                                     </div>
                                 </div>
@@ -103,8 +103,8 @@
                                 {
                                     <img src="@Model.ImagePathOne" class="img-fluid" />
                                 }
-                                <label asp-for="ImageFileOne" class="form-label">Image:</label>
-                                <input asp-for="ImageFileOne" class="form-control" />
+                                <label asp-for="ImageFileOne" class="form-label">Image 1:</label>
+                                <input asp-for="ImageFileOne" class="form-control" required/>
                             </div>
 
                             <div class="mb-3">
@@ -112,7 +112,7 @@
                                 {
                                     <img src="@Model.ImagePathTwo" class="img-fluid" />
                                 }
-                                <label asp-for="ImageFileTwo" class="form-label">Image:</label>
+                                <label asp-for="ImageFileTwo" class="form-label">Image 2:</label>
                                 <input asp-for="ImageFileTwo" class="form-control" />
                             </div>
 
@@ -121,7 +121,7 @@
                                 {
                                     <img src="@Model.ImagePathThree" class="img-fluid" />
                                 }
-                                <label asp-for="ImageFileThree" class="form-label">Image:</label>
+                                <label asp-for="ImageFileThree" class="form-label">Image 3:</label>
                                 <input asp-for="ImageFileThree" class="form-control" />
                             </div>
 
@@ -130,7 +130,7 @@
                                 {
                                     <img src="@Model.ImagePathFour" class="img-fluid" />
                                 }
-                                <label asp-for="ImageFileFour" class="form-label">Image:</label>
+                                <label asp-for="ImageFileFour" class="form-label">Image 4:</label>
                                 <input asp-for="ImageFileFour" class="form-control" />
                             </div>
 

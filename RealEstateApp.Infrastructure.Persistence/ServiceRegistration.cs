@@ -20,8 +20,11 @@ namespace RealEstateApp.Infrastructure.Persistence
             else
             {
                 services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                m => m.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+                {
+                    options.EnableSensitiveDataLogging();
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    m => m.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName));
+                });
             }
             #endregion
 

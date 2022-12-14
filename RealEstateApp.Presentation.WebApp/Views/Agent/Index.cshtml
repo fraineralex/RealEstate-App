@@ -56,14 +56,18 @@
                         }*@
 
                         <div class="card-body">
-                            <h4>Type of Property:@property.TypeOfProperty</h4>
+                            <h4>Type of Property:@property.TypeOfProperty.Name</h4>
                             <p class="card-text">Code:@property.Code</p>
-                            <p class="card-text">Type of Sale:@property.TypeOfSale</p>
+                            <p class="card-text">Type of Sale:@property.TypeOfSale.Name</p>
                             <p class="card-text">Price:@property.Price</p>
                             <p class="card-text">Number of Rooms:@property.NumberOfRooms</p>
                             <p class="card-text">Number of Bathrooms:@property.NumberOfBathrooms</p>
                             <p class="card-text">Land Size:@property.LandSize mt</p>
-
+                            <h5>Improvements:</h5>
+                            @foreach (var item in property.Improvements)
+                            {
+                                <p class="card-text">@item.Name</p>
+                            }
                             <a asp-controller="Agent" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-info">Edit</a>
                             <a asp-controller="Agent" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
 

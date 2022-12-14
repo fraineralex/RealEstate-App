@@ -6,6 +6,7 @@ using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.Enums;
 using RealEstateApp.Core.Application.Helpers;
 using RealEstateApp.Core.Application.Interfaces.Services;
+using RealEstateApp.Core.Application.ViewModels.Improvements;
 using RealEstateApp.Core.Application.ViewModels.Properties;
 using System.Runtime.CompilerServices;
 
@@ -35,11 +36,10 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             _typeOfSalesService = typeOfSalesService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            
-
-            return View();
+            var properties = await _propertiesService.GetAllWithProperties();
+            return View(properties);
         }
 
         public async Task<IActionResult> Create()
@@ -62,8 +62,22 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
                 vm.Improvements = await _improvementsService.GetAllViewModel();
                 return View("SaveProperty", vm);
             }
+            vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
+            vm.TypeOfSales = await _typeOfSalesService.GetAllViewModel();
+            vm.Improvements = await _improvementsService.GetAllViewModel();
+
+
             vm.AgentId = userviewModel.Id;
-            SavePropertiesViewModel savePropertiesVmAdded = await _propertiesService.CustomAdd(vm);
+            vm.Code = CodeGenerator.PropertyCodeGenerator();
+
+            List<ImprovementsViewModel> improvementsList = new List<ImprovementsViewModel>();
+            foreach (var item in vm.ImprovementsId)
+            {
+                improvementsList.Add(_mapper.Map<ImprovementsViewModel>(await _improvementsService.GetByIdSaveViewModel(item)));
+            }
+
+
+            SavePropertiesViewModel savePropertiesVmAdded = await _propertiesService.Add(vm);
 
             if (savePropertiesVmAdded != null && savePropertiesVmAdded.Id != 0)
             {
@@ -87,7 +101,8 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             }
 
 
-            
+            savePropertiesVmAdded.Improvements = improvementsList;
+            await _propertiesService.AddImprovementsAsync(savePropertiesVmAdded);
             await _propertiesService.Update(savePropertiesVmAdded, savePropertiesVmAdded.Id);
             return RedirectToRoute(new { controller = "Agent", action = "Index" });
 
