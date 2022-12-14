@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using RealEstateApp.Core.Application.DTOs.Account;
+using RealEstateApp.Core.Application.Features.Accounts.Commands.RegisterAdminUser;
+using RealEstateApp.Core.Application.Features.Accounts.Commands.RegisterDeveloperUser;
+using RealEstateApp.Core.Application.Features.Accounts.Queries.Authenticate;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.CreateImprovements;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.UpdateImprovements;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties;
@@ -212,6 +215,15 @@ namespace RealEstateApp.Core.Application.Mappings
                 .ForMember(x => x.CreatedBy, opt => opt.Ignore())
                 .ReverseMap();
 
+            CreateMap<RegisterAdminUserCommand, RegisterRequest>()
+                .ReverseMap();
+
+             CreateMap<RegisterDeveloperUserCommand, RegisterRequest>()
+                .ReverseMap();
+
+            CreateMap<AuthenticateUserQuery, AuthenticationRequest>()
+               .ReverseMap();
+            
             #endregion
         }
     }

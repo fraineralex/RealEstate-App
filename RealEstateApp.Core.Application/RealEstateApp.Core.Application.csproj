@@ -21,9 +21,4 @@
     <ProjectReference Include="..\RealEstateApp.Core.Domain\RealEstateApp.Core.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Accounts\Queries\Authenticate\" />
-    <Folder Include="Features\Accounts\Queries\" />
-  </ItemGroup>
-
 </Project>
