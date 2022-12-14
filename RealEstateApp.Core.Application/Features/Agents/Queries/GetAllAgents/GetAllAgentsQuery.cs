@@ -29,6 +29,7 @@ namespace RealEstateApp.Core.Application.Features.Agents.Queries.GetAllAgents
         public async Task<IEnumerable<AgentsViewModel>> Handle(GetAllAgentsQuery query, CancellationToken cancellationToken)
         {
             var agents = await _accountService.GetAllAgents();
+            if (agents.Count() == 0) throw new Exception("No existen las propiedades.");
             var properties = await _propertiesRepository.GetAllAsync();
             foreach (var agent in agents)
             {

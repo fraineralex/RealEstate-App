@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateApp.Core.Application.Features.Agents.Commands.CreateAgents;
 using RealEstateApp.Core.Application.Features.Agents.Queries.GetAgentsById;
@@ -6,15 +7,22 @@ using RealEstateApp.Core.Application.Features.Agents.Queries.GetAllAgentProperti
 using RealEstateApp.Core.Application.Features.Agents.Queries.GetAllAgents;
 using RealEstateApp.Core.Application.ViewModels.Agents;
 using RealEstateApp.Core.Application.ViewModels.Properties;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
     [ApiVersion("1.0")]
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [SwaggerTag("Consultas Agentes")]
     public class AgentsController : BaseApiController
     {
+        [Authorize(Policy = "RequireOnlyAdminAndDeveloper")]
         [HttpGet]
+        [SwaggerOperation(
+           Summary = "Listado de los agentes",
+           Description = "Obtiene todos los tipos de ventas registrados."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AgentsViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -30,7 +38,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
+        [Authorize(Policy = "RequireOnlyAdminAndDeveloper")]
         [HttpGet("{id}")]
+        [SwaggerOperation(
+           Summary = "Agente por Id",
+           Description = "Obtiene el agente utilizando el id como filtro."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AgentsViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -47,7 +60,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
+        [Authorize(Policy = "RequireOnlyAdminAndDeveloper")]
         [HttpGet("{id}")]
+        [SwaggerOperation(
+           Summary = "Listado de propiedades de un agente",
+           Description = "Obtiene todos las propieades del agente utilizando el id como filtro."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PropertiesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -64,7 +82,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [SwaggerOperation(
+           Summary = "Cambio de estado de un agente",
+           Description = "Realiza el cambio de estado de un agente."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PropertiesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

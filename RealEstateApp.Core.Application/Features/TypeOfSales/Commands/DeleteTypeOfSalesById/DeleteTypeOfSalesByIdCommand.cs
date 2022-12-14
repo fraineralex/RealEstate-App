@@ -11,15 +11,29 @@ namespace RealEstateApp.Core.Application.Features.TypeOfSales.Commands.DeleteTyp
     public class DeleteTypeOfSalesByIdCommandHandler : IRequestHandler<DeleteTypeOfSalesByIdCommand, int>
     {
         private readonly ITypeOfSalesRepository _typeOfSalesRepository;
-        public DeleteTypeOfSalesByIdCommandHandler(ITypeOfSalesRepository typeOfSalesRepository)
+        private readonly IPropertiesRepository _propertiesRepository;
+        public DeleteTypeOfSalesByIdCommandHandler(ITypeOfSalesRepository typeOfSalesRepository, IPropertiesRepository propertiesRepository)
         {
             _typeOfSalesRepository = typeOfSalesRepository;
+            _propertiesRepository = propertiesRepository;
         }
         public async Task<int> Handle(DeleteTypeOfSalesByIdCommand command, CancellationToken cancellationToken)
         {
             var typeOfSales = await _typeOfSalesRepository.GetByIdAsync(command.Id);
 
             if (typeOfSales == null) throw new Exception("El tipo de venta no fue encontrado.");
+
+            var properties = await _propertiesRepository.GetAllAsync();
+
+            var propertiesRelational = properties.Where(x => x.ImprovementsId == command.Id).ToList();
+
+            if (propertiesRelational.Count() != 0)
+            {
+                foreach (var property in propertiesRelational)
+                {
+                    await _propertiesRepository.DeleteAsync(property);
+                }
+            }
 
             await _typeOfSalesRepository.DeleteAsync(typeOfSales);
 

@@ -19,12 +19,13 @@ namespace RealEstateApp.Presentation.WebApi.Extensions
                     Description = "This Api will be responsible for overall data distribution",
                     Contact = new OpenApiContact
                     {
-                        Name = "Cristopher Zaiz Ortega",
+                        Name = "Grupo #5",
                         Email = "e.zaizortega@gmail.com",
                         Url = new Uri("https://czaiz.com")
                     }
                 });
 
+                options.EnableAnnotations();
                 options.DescribeAllParametersInCamelCase();
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

@@ -32,7 +32,7 @@ namespace RealEstateApp.Core.Application.Features.Improvements.Queries.GetAllImp
             private async Task<List<ImprovementsViewModel>> GetAllViewModel()
             {
                 var ImprovementList = await _ImprovementsRepository.GetAllAsync();
-                if (ImprovementList.Count() == 0) throw new Exception("There are no improvements.");
+                if (ImprovementList.Count() == 0) throw new Exception("No existen las mejoras.");
                 var result = _mapper.Map<List<ImprovementsViewModel>>(ImprovementList);
                 return result;
             }

@@ -28,7 +28,7 @@ namespace RealEstateApp.Core.Application.Features.Improvements.Queries.GetImprov
         public async Task<ImprovementsViewModel> Handle(GetImprovementsByIdQuery query, CancellationToken cancellationToken)
         {
             var improvement = await _ImprovementsRepository.GetByIdAsync(query.Id);
-            if (improvement is null) throw new Exception("Improvement Not Found");
+            if (improvement is null) throw new Exception("No existe la mejora.");
             var result = _mapper.Map<ImprovementsViewModel>(improvement);
             return result;
         }

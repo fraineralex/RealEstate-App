@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.DeleteTypeOfPropertiesById;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
@@ -8,21 +9,21 @@ using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetAllTypeOfSa
 using RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetTypeOfSalesById;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.TypeOfSales;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
+    [SwaggerTag("Mantenimiento de tipo de ventas")]
     public class TypeOfSalesController : BaseApiController
     {
-        private readonly ITypeOfSalesService _typeOfSalesService;
-
-        public TypeOfSalesController(ITypeOfSalesService typeOfSalesService)
-        {
-            _typeOfSalesService = typeOfSalesService;
-        }
-
+        [Authorize(Policy = "RequireOnlyAdminAndDeveloper")]
         [HttpGet]
+        [SwaggerOperation(
+           Summary = "Listado de tipo de ventas",
+           Description = "Obtiene todos los tipos de ventas registrados."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -40,7 +41,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
+        [Authorize(Policy = "RequireOnlyAdminAndDeveloper")]
         [HttpGet("{id}")]
+        [SwaggerOperation(
+           Summary = "Tipo de venta por Id",
+           Description = "Obtiene un tipo de venta utilizando el id como filtro."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -57,7 +63,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [SwaggerOperation(
+          Summary = "Creacion de tipo de venta",
+          Description = "Recibe los parametros necesarios para un nuevo tipo de venta."
+        )]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -74,8 +85,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
+        [SwaggerOperation(
+               Summary = "Actualizacion de tipo de venta",
+               Description = "Recibe los parametros necesarios para modificar un tipo de venta existente."
+        )]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveTypeOfSalesViewModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -100,7 +115,12 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
+        [SwaggerOperation(
+            Summary = "Eliminar un tipo de venta",
+            Description = "Recibe los parametros necesarios para eliminar una tipo de venta existente."
+        )]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
