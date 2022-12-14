@@ -27,10 +27,11 @@ namespace RealEstateApp.Core.Application.Features.Properties.Queries.GetProperti
 
         public async Task<PropertiesViewModel> Handle(GetPropertiesByIdQuery query, CancellationToken cancellationToken)
         {
-            var property = await _PropertiesRepository.GetByIdAsync(query.Id);
+            var properties = await _PropertiesRepository.GetAllAsync();
+            var property = properties.FirstOrDefault(x => x.Id == query.Id);
             if (property is null) throw new Exception("No existe la propiedad.");
-            var result = _mapper.Map<PropertiesViewModel>(property);
-            return result;
+            var result = await _PropertiesRepository.GetAllWithIncludeAsync(new List<string> { "Improvements", "TypeOfProperty", "TypeOfSale" });
+            return _mapper.Map<PropertiesViewModel>(property);
         }
     }
     

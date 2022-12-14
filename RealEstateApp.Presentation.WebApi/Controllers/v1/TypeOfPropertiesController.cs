@@ -47,14 +47,8 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         {
             try
             {
-                var category = await Mediator.Send(new GetTypeOfPropertiesByIdQuery { Id = id});
-
-                if (category == null)
-                {
-                    return NotFound("No existe el tipo de propiedad.");
-                }
-
-                return Ok(category);
+                var typeOfProperty = await Mediator.Send(new GetTypeOfPropertiesByIdQuery { Id = id});
+                return Ok(typeOfProperty);
             }
             catch (Exception ex)
             {
