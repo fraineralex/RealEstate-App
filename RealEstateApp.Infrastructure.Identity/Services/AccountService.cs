@@ -110,7 +110,8 @@ namespace RealEstateApp.Infrastructure.Identity.Services
                 LastName = request.LastName,
                 UserName = request.UserName,
                 ImagePath = request.ImagePath,
-                IDCard = request.IDCard
+                IDCard = request.IDCard,
+                EmailConfirmed = request.EmailConfirmed
 
             };
 
