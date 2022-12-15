@@ -20,6 +20,8 @@ namespace RealEstateApp.Core.Application.DTOs.Account
         [JsonIgnore]
         public string? RefreshToken { get; set; }
         public string? ImagePath { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
 
     }
 }

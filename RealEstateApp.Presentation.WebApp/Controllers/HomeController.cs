@@ -13,21 +13,42 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IPropertiesService _propertiesService;
+        private readonly ITypeOfPropertiesService _typeOfPropertiesService;
         private readonly IAccountService _accountService;
         private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger, IPropertiesService propertiesService, IAccountService accountService, IUserService userService)
+        public HomeController(ILogger<HomeController> logger, IPropertiesService propertiesService, IAccountService accountService, IUserService userService, ITypeOfPropertiesService typeOfPropertiesService)
         {
             _logger = logger;
             _propertiesService = propertiesService;
             _accountService = accountService;
             _userService = userService;
+            _typeOfPropertiesService = typeOfPropertiesService;
         }
 
         public async Task<IActionResult> Index()
         {
             var properties = await _propertiesService.GetAllWithInclude();
+            ViewBag.TypeOfPropertiesList = await _typeOfPropertiesService.GetAllViewModel();
             return View(properties);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Filters(string? propertyCode, List<int>? propertyIds, decimal minPrice, decimal maxPrice, int bathroomsQuantity, int roomsQuantity)
+        {
+            FilterPropertiesViewModel filterPropertiesViewModel = new()
+            {
+                Code = propertyCode,
+                Ids = propertyIds,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                NumberOfBathrooms = bathroomsQuantity,
+                NumberOfRooms = roomsQuantity
+            };
+
+            var properties = await _propertiesService.GetAllWithFilters(filterPropertiesViewModel);
+            ViewBag.TypeOfPropertiesList = await _typeOfPropertiesService.GetAllViewModel();
+            return View("Index", properties);
         }
 
         public async Task<IActionResult> Details(int id)

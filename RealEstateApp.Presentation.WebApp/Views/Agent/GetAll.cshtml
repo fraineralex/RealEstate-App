@@ -11,13 +11,9 @@
             <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
             <p class="fs-3 fw-bold text-secondary mt-1 text-center">
                 Welcome to Real State App, here you can manager the properties of the system. <i class="text-white">🚀</i>
-            </p>
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <div class="col-3 offset-9">
-            <a asp-controller="Agent" asp-action="Create" class="btn btn-info">Create a new Property</a>
+                <a asp-controller="Agent" asp-action="Create" class="btn btn-info text-center mx-auto">Create a new Property</a>
+            </p>
         </div>
     </div>
 
@@ -35,42 +31,22 @@
             {
 
                 <div class="col-4">
-                    <div class="card shadow-sm mb-3">
+                    <div class="card shadow-sm mb-3 bg-dark text-white">
                         <img class="bd-placeholder-img card-img-top" src="@property.ImagePathOne" />
 
-                        @*@if(property.ImagePathTwo != null && property.ImagePathTwo != ""){
-                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathTwo" />
-
-                }
-
-                @if (property.ImagePathThree != null && property.ImagePathThree != "")
-                {
-                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathThree" />
-
-                }
-
-                @if (property.ImagePathFour != null && property.ImagePathFour != "")
-                {
-                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathFour" />
-
-                }*@
-
                         <div class="card-body">
-                            <h4>Type of Property: @property.TypeOfProperty.Name</h4>
-                            <p class="card-text">Code: @property.Code</p>
-                            <p class="card-text">Type of Sale: @property.TypeOfSale.Name</p>
-                            <p class="card-text">Price: RD$ @property.Price</p>
-                            <p class="card-text">Number of Rooms: @property.NumberOfRooms</p>
-                            <p class="card-text">Number of Bathrooms: @property.NumberOfBathrooms</p>
-                            <p class="card-text">Land Size: @property.LandSize mt</p>
-                            <h5>Improvements:</h5>
+                            <h4 class="fw-bold text-uppercase fs-4">@property.TypeOfProperty.Name</h4>
+                            <p class="card-text fw-bold fs-6">Code: <i class="fs-6 fw-normal" class>@property.Code</i></p>
+                            <p class="card-text fw-bold fs-5">@property.TypeOfSale.Name</p>
+                            <p class="card-text text-primary fw-bold fs-6">RD$ @property.Price</p>
+                            <p class="card-text fw-bold fs-5">🛏️ @property.NumberOfRooms 🛁 @property.NumberOfBathrooms 📐 @property.LandSize mt</p>
+
                             @foreach (var item in property.Improvements)
                             {
                                 <p class="card-text">@item.Name</p>
                             }
                             <a asp-controller="Agent" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-warning">Edit</a>
                             <a asp-controller="Agent" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
-
 
                         </div>
                     </div>

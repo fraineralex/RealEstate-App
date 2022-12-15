@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RealEstateApp.Presentation.WebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="~/css/virtual-select.css" asp-append-version="true" />
 </head>
 <body>
     @if (user != null)
@@ -110,21 +111,21 @@
                         </ul>
                     </li>
                     <li>
-                        <a asp-controller="Client" asp-action="Index">
+                        <a asp-controller="Client" asp-action="Agents">
                             <i class="bi bi-people-fill"></i>
                             <span class="link_name">Agents</span>
                         </a>
                         <ul class="sub-menu blank">
-                            <li><a class="link_name" asp-controller="Client" asp-action="Index">Agents</a></li>
+                            <li><a class="link_name" asp-controller="Client" asp-action="Agents">Agents</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a asp-controller="Client" asp-action="Index">
+                        <a asp-controller="Client" asp-action="MyProperties">
                             <i class="bi bi-building-fill"></i>
                             <span class="link_name">My Properties</span>
                         </a>
                         <ul class="sub-menu blank">
-                            <li><a class="link_name" asp-controller="Client" asp-action="Index">My Properties</a></li>
+                            <li><a class="link_name" asp-controller="Client" asp-action="MyProperties">My Properties</a></li>
                         </ul>
                     </li>
                     
@@ -172,10 +173,20 @@
                 <li>
                     <div class="profile-details">
                         <div class="profile-content">
-                            <img src="/Images/profile.jpeg" alt="profileImg">
+                            @if(isAdmin || isDeveloper){
+
+                                <img src="/Images/profile.jpeg" alt="profileImg">
+                            }
+
+                            @if (isAgent || isClient)
+                            {
+
+                                <img src="@user.ImagePath" alt="profileImg">
+                            }
+                            
                         </div>
                         <div class="name-job">
-                            @*<div class="job fw-bold">@user.FirstName @user.LastName</div>*@
+                            <div class="job fw-bold">@user.FirstName @user.LastName</div>
                             <div class="job">👨🏻‍🚀 @user.UserName</div>
                         </div>
                         <i class="bi bi-dot"></i>
@@ -255,6 +266,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/virtual-select.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        VirtualSelect.init({
+            ele: '#checkboxes-select'
+        });
+    </script>
 </body>
 </html>
