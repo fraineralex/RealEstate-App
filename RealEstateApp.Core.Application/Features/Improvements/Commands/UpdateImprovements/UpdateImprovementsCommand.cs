@@ -10,10 +10,17 @@ using System.Threading.Tasks;
 namespace RealEstateApp.Core.Application.Features.Improvements.Commands.UpdateImprovements
 {
     using RealEstateApp.Core.Domain.Entities;
+    using Swashbuckle.AspNetCore.Annotations;
+    using System.ComponentModel.DataAnnotations;
+
     public class UpdateImprovementsCommand : IRequest<UpdateImprovementsResponse>
     {
         public int Id { get; set; }
+        [SwaggerParameter(Description = "El nombre de la mejora")]
+        [Required(ErrorMessage = "El nombre es requerido.")]
         public string Name { get; set; }
+        [SwaggerParameter(Description = "La descripcion de la mejora")]
+        [Required(ErrorMessage = "La descripcion es requerida.")]
         public string Description { get; set; }
     }
 

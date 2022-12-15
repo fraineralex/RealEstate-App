@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
 using RealEstateApp.Core.Application.DTOs.Account;
+using RealEstateApp.Core.Application.Features.Accounts.Commands.RegisterAdminUser;
+using RealEstateApp.Core.Application.Features.Accounts.Commands.RegisterDeveloperUser;
+using RealEstateApp.Core.Application.Features.Accounts.Queries.Authenticate;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.CreateImprovements;
 using RealEstateApp.Core.Application.Features.Improvements.Commands.UpdateImprovements;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.UpdateTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.UpdateTypeOfSales;
+using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 using RealEstateApp.Core.Application.ViewModels.Properties;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
@@ -153,6 +157,22 @@ namespace RealEstateApp.Core.Application.Mappings
 
             #endregion
 
+            #region "User"
+            CreateMap<UserViewModel, UpdateUserViewModel>()
+             .ForMember(x => x.ConfirmPassword, opt => opt.Ignore())
+             .ForMember(x => x.CurrentPassword, opt => opt.Ignore())
+             .ForMember(x => x.Password, opt => opt.Ignore())
+             .ForMember(x => x.Error, opt => opt.Ignore())
+             .ForMember(x => x.HasError, opt => opt.Ignore())
+             .ReverseMap()
+             .ForMember(x => x.Role, opt => opt.Ignore());
+
+            CreateMap<UpdateUserViewModel, SaveUserViewModel>()
+             .ForMember(x => x.File, opt => opt.Ignore())
+             .ForMember(x => x.Phone, opt => opt.Ignore())
+             .ReverseMap();
+            #endregion
+
             #region CQRS
 
             CreateMap<CreateImprovementsCommand, Improvements>()
@@ -218,6 +238,15 @@ namespace RealEstateApp.Core.Application.Mappings
                 .ForMember(x => x.CreatedBy, opt => opt.Ignore())
                 .ReverseMap();
 
+            CreateMap<RegisterAdminUserCommand, RegisterRequest>()
+                .ReverseMap();
+
+             CreateMap<RegisterDeveloperUserCommand, RegisterRequest>()
+                .ReverseMap();
+
+            CreateMap<AuthenticateUserQuery, AuthenticationRequest>()
+               .ReverseMap();
+            
             #endregion
         }
     }

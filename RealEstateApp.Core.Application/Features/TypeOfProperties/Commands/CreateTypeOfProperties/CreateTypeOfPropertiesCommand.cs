@@ -11,11 +11,15 @@ using System.Threading.Tasks;
 namespace RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTypeOfProperties
 {
     using RealEstateApp.Core.Domain.Entities;
+    using Swashbuckle.AspNetCore.Annotations;
+
     public class CreateTypeOfPropertiesCommand : IRequest<int>
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
+        [SwaggerParameter(Description = "El nombre del tipo de propiedad")]
         [Required(ErrorMessage = "El nombre es requerido.")]
         public string Name { get; set; }
+        [SwaggerParameter(Description = "La descripcion del tipo de propiedad")]
         [Required(ErrorMessage = "La descripcion es requerida.")]
         public string Description { get; set; }
     }

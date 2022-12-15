@@ -2,6 +2,7 @@
 using MediatR;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RealEstateApp.Core.Application.Features.TypeOfProperties.Queries.GetTy
 {
     public class GetTypeOfPropertiesByIdQuery : IRequest<TypeOfPropertiesViewModel>
     {
+        [SwaggerParameter(Description = "El Id del tipo de propiedad que desea consultar")]
         public int Id { get; set; }
     }
     public class GetTypeOfPropertiesByIdQueryHandler : IRequestHandler<GetTypeOfPropertiesByIdQuery, TypeOfPropertiesViewModel>

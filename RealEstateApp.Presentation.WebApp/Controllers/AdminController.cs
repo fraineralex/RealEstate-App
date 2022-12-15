@@ -8,6 +8,10 @@ using RealEstateApp.Core.Application.Helpers;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.Properties;
 using RealEstateApp.Core.Application.ViewModels.Admin;
+using RealEstateApp.Core.Application.ViewModels.Users;
+using RealEstateApp.Core.Application.Services;
+using RealEstateApp.Core.Application.ViewModels.Improvements;
+using System.Data;
 
 namespace RealEstateApp.Presentation.WebApp.Controllers
 {
@@ -54,6 +58,175 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             }
 
             return View(AgentsList);
+        }
+
+        public async Task<IActionResult> AdminManager()
+        {
+            var usersList = await _userService.GetAllUsersViewModels();
+            List<UserViewModel> adminList = usersList.Where(user => user.Role == Roles.Admin.ToString()).ToList();
+
+            return View(adminList);
+        }
+
+        public async Task<IActionResult> DevsManager()
+        {
+            var usersList = await _userService.GetAllUsersViewModels();
+            List<UserViewModel> adminList = usersList.Where(user => user.Role == Roles.Developer.ToString()).ToList();
+
+            return View(adminList);
+        }
+
+        public IActionResult RegisterUser(string role)
+        {
+            if(role == "admin")
+            {
+                ViewBag.Role = Roles.Admin.ToString();
+                return View("SaveUser", new UpdateUserViewModel());
+            }
+            else if(role == "dev")
+            {
+                ViewBag.Role = Roles.Developer.ToString();
+                return View("SaveUser", new UpdateUserViewModel());
+            }
+
+            return RedirectToRoute(new { controller = "Admin", action = "Index" });
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RegisterUser(UpdateUserViewModel vm, string role)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Role = role;
+                return View("SaveUser", vm);
+            }
+
+
+            //vm.ImagePath = UploadImagesHelper.UploadUserImage(vm.File, vm.UserName);
+
+            SaveUserViewModel saveUserViewModel = _mapper.Map<SaveUserViewModel>(vm);
+
+            var origin = Request.Headers["origin"];
+            RegisterResponse response = new RegisterResponse();
+
+            if (role == Roles.Admin.ToString())
+            {
+                response = await _userService.RegisterAsync(saveUserViewModel, origin, Roles.Admin);
+
+                if (response.HasError)
+                {
+                    vm.HasError = response.HasError;
+                    vm.Error = response.Error;
+
+                    ViewBag.Role = role;
+                    return View("SaveUser", vm);
+                }
+
+                return RedirectToRoute(new { controller = "Admin", action = "AdminManager" });
+            }
+
+            if (role == Roles.Developer.ToString())
+            {
+                response = await _userService.RegisterAsync(saveUserViewModel, origin, Roles.Developer);
+
+                if (response.HasError)
+                {
+                    vm.HasError = response.HasError;
+                    vm.Error = response.Error;
+
+                    ViewBag.Role = role;
+                    return View("SaveUser", vm);
+                }
+
+                return RedirectToRoute(new { controller = "Admin", action = "DevsManager" });
+            }
+
+            return RedirectToRoute(new { controller = "Admin", action = "Index" });
+        }
+
+        public async Task<IActionResult> UpdateUser(string username, string role)
+        {
+            UpdateUserViewModel userSaveViewModel = await _userService.GetUserSaveViewModelByUsername(username);
+
+            ViewBag.role = null;
+            ViewBag.place = role;
+            return View("SaveUser", userSaveViewModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> UpdateUser(UpdateUserViewModel userSaveViewModel, string role)
+        {
+            if(!ModelState.IsValid)
+            {
+                ViewBag.Role = null;
+                return View("SaveUser", userSaveViewModel);
+            }
+
+
+            var origin = Request.Headers["origin"];
+
+            if (role == Roles.Admin.ToString())
+            {
+                var response = await _userService.Update(userSaveViewModel);
+
+                if (response.HasError)
+                {
+                    userSaveViewModel.HasError = response.HasError;
+                    userSaveViewModel.Error = response.Error;
+
+                    ViewBag.Role = role;
+                    return View(userSaveViewModel);
+                }
+
+                return RedirectToRoute(new { controller = "Admin", action = "AdminManager" });
+            }
+
+            if (role == Roles.Developer.ToString())
+            {
+                var response = await _userService.Update(userSaveViewModel);
+
+                if (response.HasError)
+                {
+                    userSaveViewModel.HasError = response.HasError;
+                    userSaveViewModel.Error = response.Error;
+
+                    ViewBag.Role = role;
+                    return View(userSaveViewModel);
+                }
+
+                return RedirectToRoute(new { controller = "Admin", action = "DevsManager" });
+            }
+
+            return RedirectToRoute(new { controller = "User", action = "Index" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeUserStatus(string id, string Role)
+        {
+            var response = await _accountService.ChageUserStatusAsync(id);
+
+            if(Role == "Developer")
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "DevsManager" });
+            }
+
+
+            if (Role == "Agent")
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "AgentsList" });
+            }
+
+            return RedirectToRoute(new { controller = "Admin", action = "AdminManager" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var response = await _accountService.DeleteUserAsync(id);
+
+            return RedirectToRoute(new { controller = "Admin", action = "AgentsList" });
         }
     }
 }

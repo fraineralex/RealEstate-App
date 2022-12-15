@@ -10,10 +10,17 @@ using System.Threading.Tasks;
 namespace RealEstateApp.Core.Application.Features.TypeOfSales.Commands.UpdateTypeOfSales
 {
     using RealEstateApp.Core.Domain.Entities;
+    using Swashbuckle.AspNetCore.Annotations;
+    using System.ComponentModel.DataAnnotations;
+
     public class TypeOfSalesUpdateCommand : IRequest<TypeOfSalesUpdateResponse>
     {
         public int Id { get; set; }
+        [SwaggerParameter(Description = "El nombre del tipo de venta")]
+        [Required(ErrorMessage = "El nombre es requerido.")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "La descripcion es requerida.")]
+        [SwaggerParameter(Description = "La descripcion del tipo de venta")]
         public string Description { get; set; }
     }
 

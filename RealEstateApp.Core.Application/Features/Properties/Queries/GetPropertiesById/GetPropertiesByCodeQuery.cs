@@ -2,6 +2,7 @@
 using MediatR;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
 using RealEstateApp.Core.Application.ViewModels.Properties;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RealEstateApp.Core.Application.Features.Properties.Queries.GetProperti
 {
     public class GetPropertiesByCodeQuery : IRequest<PropertiesViewModel>
     {
+        [SwaggerParameter(Description = "El Codigo de la propiedad que desea consultar")]
         public string Code { get; set; }
     }
     public class GetPropertiesByCodeQueryHandler : IRequestHandler<GetPropertiesByCodeQuery, PropertiesViewModel>

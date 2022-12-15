@@ -37,7 +37,9 @@ namespace RealEstateApp.Core.Application.ViewModels.Users
         [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set; }
 
-     
+        [DataType(DataType.Password)]
+        public string? CurrentPassword { get; set; }
+
 
         [Required(ErrorMessage = "You must type the Email")]
         [DataType(DataType.Text)]
@@ -48,6 +50,9 @@ namespace RealEstateApp.Core.Application.ViewModels.Users
         public string? Phone { get; set; }
 
         public string? ImagePath { get; set; }
+        [Required(ErrorMessage = "You must type the ID card")]
+        [DataType(DataType.Text)]
+        public string? IDCard { get; set; }
 
         [DataType(DataType.Upload)]
         public IFormFile? File { get; set; }
