@@ -55,8 +55,27 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
                 return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
 
             }
+            ViewBag.TypeOfPropertiesList = await _typeOfPropertiesService.GetAllViewModel();
             var properties = await _propertiesService.GetAllByAgentIdWithInclude(userviewModel.Id);
             return View(properties);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FiltersIndex(string? propertyCode, List<int>? propertyIds, decimal minPrice, decimal maxPrice, int bathroomsQuantity, int roomsQuantity)
+        {
+            FilterPropertiesViewModel filterPropertiesViewModel = new()
+            {
+                Code = propertyCode,
+                Ids = propertyIds,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                NumberOfBathrooms = bathroomsQuantity,
+                NumberOfRooms = roomsQuantity
+            };
+
+            var properties = await _propertiesService.GetAllWithFilters(filterPropertiesViewModel);
+            ViewBag.TypeOfPropertiesList = await _typeOfPropertiesService.GetAllViewModel();
+            return View("Index", properties);
         }
 
         public async Task<IActionResult> GetAll()
@@ -77,9 +96,26 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
                 return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
 
             }
-
+            ViewBag.TypeOfPropertiesList = await _typeOfPropertiesService.GetAllViewModel();
             var properties = await _propertiesService.GetAllByAgentIdWithInclude(userviewModel.Id);
             return View(properties);
+        }
+
+        public async Task<IActionResult> FiltersGetAll(string? propertyCode, List<int>? propertyIds, decimal minPrice, decimal maxPrice, int bathroomsQuantity, int roomsQuantity)
+        {
+            FilterPropertiesViewModel filterPropertiesViewModel = new()
+            {
+                Code = propertyCode,
+                Ids = propertyIds,
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                NumberOfBathrooms = bathroomsQuantity,
+                NumberOfRooms = roomsQuantity
+            };
+
+            var properties = await _propertiesService.GetAllWithFilters(filterPropertiesViewModel);
+            ViewBag.TypeOfPropertiesList = await _typeOfPropertiesService.GetAllViewModel();
+            return View("GetAll", properties);
         }
 
         public async Task<IActionResult> Create()

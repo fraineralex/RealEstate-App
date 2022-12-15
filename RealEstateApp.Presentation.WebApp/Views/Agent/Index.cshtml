@@ -24,6 +24,58 @@
         }
         else
         {
+            <div class="col-4">
+                <div class="mx-auto card bg-dark text-white mt-3" style="border-radius: 1rem;">
+                    <div class="card-body">
+
+                        <form method="post" asp-controller="Agent" asp-action="FiltersIndex">
+                            <h5 class="fw-bold mb-3 text-primary mt-4 fs-5"><i class="text-primary">Filter property code</i></h5>
+
+                            <div class="p-2 me-5">
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="PropertyCode" name="PropertyCode">
+                            </div>
+
+                            <h5 class="fw-bold mb-3 text-primary mt-2 fs-5"><i class="text-primary">Filter by type of property</i></h5>
+
+                            <select class="mt-2 me-2 form-control bg-white text-white border-white form-control-lg" id="checkboxes-select" multiple name="PropertyIds" placeholder="Select the properties"
+                                data-search="false" data-silent-initial-value-set="true" aria-describedby="button">
+                                @foreach (var typeOfProperty in ViewBag.TypeOfPropertiesList)
+                                {
+                                    <option value="@typeOfProperty.Id">@typeOfProperty.Name</option>
+                                }
+                            </select>
+
+                            <h5 class="fw-bold mb-3 text-primary mt-4 fs-5"><i class="text-primary">Filter by price</i></h5>
+
+                            <div class="p-2 me-5">
+                                <label for="MinPrice" class="form-label text-white"><strong>Min price </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="MinPrice" name="MinPrice">
+                            </div>
+
+                            <div class="p-2 pt-0 me-5">
+                                <label for="MaxPrice" class="form-label text-white"><strong>Max price </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="MaxPrice" name="MaxPrice">
+                            </div>
+
+                            <h5 class="fw-bold mb-3 text-primary mt-3 fs-5"><i class="text-primary">Filter by bathrooms and rooms</i></h5>
+
+                            <div class="p-2 me-5">
+                                <label for="BathroomsQuantity" class="form-label text-white"><strong>Number Of Bathrooms </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="BathroomsQuantity" name="BathroomsQuantity">
+                            </div>
+
+                            <div class="p-2 pt-0 me-5">
+                                <label for="RoomsQuantity" class="form-label text-white"><strong>Number Of Rooms </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="RoomsQuantity" name="RoomsQuantity">
+                            </div>
+
+                            <button type="submit" class="btn btn-info float-end me-2 mt-2">Filter</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
 
             @foreach (PropertiesViewModel property in Model)
             {
