@@ -65,7 +65,7 @@
                                         @if (user.Id != currentlyUser.Id)
                                         {
 
-                                            @if (user.Status)
+                                            @if (!user.Status)
                                             {
                                                 <a onclick="ChangeUserStatus('active', 'Developer', '@user.Id')" class="btn btn-sm btn-primary"><i class="bi bi-toggle2-off"> Active</i></a>
                                             }
