@@ -256,5 +256,31 @@ namespace RealEstateApp.Core.Application.Services
 
         }
 
+        public async Task<PropertyDetailsViewModel> GetPropertyDetailsAsync(int propertyId)
+        {
+            var propertiesList = await GetAllWithInclude();
+            PropertiesViewModel property = new PropertiesViewModel();
+
+            foreach (var item in propertiesList)
+            {
+                if (propertyId == item.Id)
+                {
+                    property = _mapper.Map<PropertiesViewModel>(item);
+                }
+            }
+
+            var agentProperty = await _accountService.GetAgentPropertyByIdAsync(property.AgentId);
+
+            PropertyDetailsViewModel propertyDetailsViewModel = _mapper.Map<PropertyDetailsViewModel>(property);
+
+            propertyDetailsViewModel.AgentName = agentProperty.FirstName + " " + agentProperty.LastName;
+            propertyDetailsViewModel.AgentPhoneNumber = agentProperty.Phone;
+            propertyDetailsViewModel.AgentImagePath = agentProperty.ImagePath;
+            propertyDetailsViewModel.AgentEmail = agentProperty.Email;
+
+            return propertyDetailsViewModel;
+        }
+
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿@using RealEstateApp.Core.Application.ViewModels.Properties
 @model List<PropertiesViewModel>
 @{
-    ViewData["Title"] = "Properties";
+    ViewData["Title"] = "Agent Properties";
 }
 
 
@@ -10,23 +10,18 @@
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
             <p class="fs-3 fw-bold text-secondary mt-1 text-center">
-                Welcome to Real State App, here you can manager the properties of the system. <i class="text-white">🚀</i>
+                Welcome to Real State App, here you can see all the @ViewBag.UserName's Properties of the system. <i class="text-white">🚀</i>
             </p>
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col-3 offset-9">
-            <a asp-controller="Agent" asp-action="Create" class="btn btn-info">Create a new Property</a>
-        </div>
-    </div>
 
     <div class="row">
 
         @if (Model == null || Model.Count == 0)
         {
 
-            <h2>There is no existing or created Properties</h2>
+            <h2>There is no existing or created Properties of this agent</h2>
         }
         else
         {
@@ -38,22 +33,7 @@
                     <div class="card shadow-sm mb-3">
                         <img class="bd-placeholder-img card-img-top" src="@property.ImagePathOne" />
 
-                        @*@if(property.ImagePathTwo != null && property.ImagePathTwo != ""){
-                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathTwo" />
-
-                }
-
-                @if (property.ImagePathThree != null && property.ImagePathThree != "")
-                {
-                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathThree" />
-
-                }
-
-                @if (property.ImagePathFour != null && property.ImagePathFour != "")
-                {
-                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathFour" />
-
-                }*@
+              
 
                         <div class="card-body">
                             <h4>Type of Property: @property.TypeOfProperty.Name</h4>
@@ -68,14 +48,14 @@
                             {
                                 <p class="card-text">@item.Name</p>
                             }
-                            <a asp-controller="Agent" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-warning">Edit</a>
-                            <a asp-controller="Agent" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@property.Id" class="btn btn-dark">Details</a>
 
 
                         </div>
                     </div>
                 </div>
             }
+      
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using RealEstateApp.Core.Application.DTOs.Account;
+using RealEstateApp.Core.Application.DTOs.Properties;
 using RealEstateApp.Core.Application.Enums;
 using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Agents;
@@ -25,5 +26,7 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<UpdateAgentUserResponse> UpdateUserAsync(UpdateUserViewModel request);
         Task<ChangeUserStatusResponse> ChageUserStatusAsync(string id);
         Task<ChangeUserStatusResponse> DeleteUserAsync(string id);
+        Task<AgentProperty> GetAgentPropertyByIdAsync(string id);
+
     }
 }

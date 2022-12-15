@@ -15,6 +15,8 @@ using RealEstateApp.Core.Application.DTOs.Email;
 using RealEstateApp.Core.Application.ViewModels.Users;
 using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Agents;
+using RealEstateApp.Core.Application.DTOs.Properties;
+using MediatR;
 
 namespace RealEstateApp.Infrastructure.Identity.Services
 {
@@ -542,6 +544,28 @@ namespace RealEstateApp.Infrastructure.Identity.Services
             }
 
             return response;
+        }
+
+        public async Task<AgentProperty> GetAgentPropertyByIdAsync(string id)
+        {
+            var user = _userManager.FindByIdAsync(id).Result;
+            AgentProperty agentProperty = new AgentProperty();
+
+            if (user != null)
+            {
+                agentProperty.Id = user.Id;
+                agentProperty.FirstName = user.FirstName;
+                agentProperty.LastName = user.LastName;
+                agentProperty.UserName = user.UserName;
+                agentProperty.IDCard = user.IDCard;
+                agentProperty.Email = user.Email;
+                agentProperty.Phone = user.PhoneNumber;
+                agentProperty.ImagePath = user.ImagePath;
+            }
+
+
+            return agentProperty;
+
         }
 
 

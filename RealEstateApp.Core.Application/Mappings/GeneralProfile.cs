@@ -128,6 +128,14 @@ namespace RealEstateApp.Core.Application.Mappings
               .ForMember(x => x.TypeOfProperty, opt => opt.Ignore())
               .ForMember(x => x.TypeOfSale, opt => opt.Ignore());
 
+            CreateMap<PropertyDetailsViewModel, PropertiesViewModel>()
+                .ReverseMap()
+                .ForMember(x => x.AgentName, opt => opt.Ignore())
+                .ForMember(x => x.AgentPhoneNumber, opt => opt.Ignore())
+                .ForMember(x => x.AgentImagePath, opt => opt.Ignore())
+                .ForMember(x => x.AgentEmail, opt => opt.Ignore());
+
+
             CreateMap<PropertiesViewModel, SavePropertiesViewModel>()
                 .ReverseMap();
 

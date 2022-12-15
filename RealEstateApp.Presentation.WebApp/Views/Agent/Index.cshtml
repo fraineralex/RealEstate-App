@@ -10,14 +10,8 @@
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
             <p class="fs-3 fw-bold text-secondary mt-1 text-center">
-                Welcome to Real State App, here you can manager the properties of the system. <i class="text-white">🚀</i>
+                Welcome to Real State App, here you can manage the properties of the system. <i class="text-white">🚀</i>
             </p>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-3 offset-9">
-            <a asp-controller="Agent" asp-action="Create" class="btn btn-info">Create a new Property</a>
         </div>
     </div>
 
@@ -41,14 +35,14 @@
                   
 
                         <div class="card-body">
-                            <h4>Type of Property:@property.TypeOfProperty.Name</h4>
-                            <p class="card-text">Code:@property.Code</p>
-                            <p class="card-text">Type of Sale:@property.TypeOfSale.Name</p>
-                            <p class="card-text">Price:@property.Price</p>
-                            <p class="card-text">Number of Rooms:@property.NumberOfRooms</p>
-                            <p class="card-text">Number of Bathrooms:@property.NumberOfBathrooms</p>
-                            <p class="card-text">Land Size:@property.LandSize mt</p>
-                            <h5>Improvements:</h5>
+                            <h4>Type of Property: @property.TypeOfProperty.Name</h4>
+                            <p class="card-text">Code: @property.Code</p>
+                            <p class="card-text">Type of Sale: @property.TypeOfSale.Name</p>
+                            <p class="card-text">Price: RD$ @property.Price</p>
+                            <p class="card-text">Number of Rooms: @property.NumberOfRooms</p>
+                            <p class="card-text">Number of Bathrooms: @property.NumberOfBathrooms</p>
+                            <p class="card-text">Land Size: @property.LandSize mt</p>
+                            <h4>Improvements:</h4>
                             @foreach (var item in property.Improvements)
                             {
                                 <p class="card-text">@item.Name</p>
