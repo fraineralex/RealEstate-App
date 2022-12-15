@@ -30,7 +30,7 @@
                         <p class="fs-6 text-primary fw-bold">@user.Email </p>
                         <p class="fs-6 text-primary fw-bold">@user.PropertiesQuantity Properties </p>
                         <a class="btn btn-sm btn-danger float-end" onclick="Delete('@user.Id', 'Admin', 'Agent')"><i class="bi bi-trash-fill"></i> Delete</a>
-                        @if (user.Status)
+                        @if (!user.Status)
                         {
                             <a onclick="ChangeUserStatus('active', 'Agent', '@user.Id')" class="btn btn-sm btn-primary float-end me-2"><i class="bi bi-toggle2-off"> Active</i></a>
                         }
