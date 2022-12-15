@@ -29,7 +29,14 @@ namespace RealEstateApp.Presentation.WebApi.Controllers
         )]
         public async Task<IActionResult> AuthenticateAsync(AuthenticationRequest request)
         {
-            return Ok(await Mediator.Send(new AuthenticateUserQuery { Email = request.Email, Password = request.Password }));
+            try
+            {
+                return Ok(await Mediator.Send(new AuthenticateUserQuery { Email = request.Email, Password = request.Password }));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
 
         [HttpPost("RegisterAdminUser")]
@@ -39,7 +46,14 @@ namespace RealEstateApp.Presentation.WebApi.Controllers
         )]
         public async Task<IActionResult> RegisterAdminAsync(RegisterAdminUserCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            try
+            {
+                return Ok(await Mediator.Send(command));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }  
         }
 
         [HttpPost("RegisterDeveloperUser")]
@@ -49,7 +63,14 @@ namespace RealEstateApp.Presentation.WebApi.Controllers
         )]
         public async Task<IActionResult> RegisterDeveloperAsync(RegisterDeveloperUserCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            try
+            {
+                return Ok(await Mediator.Send(command));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }

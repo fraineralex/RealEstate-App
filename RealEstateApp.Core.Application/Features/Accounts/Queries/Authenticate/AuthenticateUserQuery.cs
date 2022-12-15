@@ -31,7 +31,16 @@ namespace RealEstateApp.Core.Application.Features.Accounts.Queries.Authenticate
         public async Task<AuthenticationResponse> Handle(AuthenticateUserQuery query, CancellationToken cancellationToken)
         {
             var data = _mapper.Map<AuthenticationRequest>(query);
-            return await _accountService.AuthenticateAsync(data);
+            var response = await _accountService.AuthenticateAsync(data);
+
+            if (response.HasError == false)
+            {
+                foreach (var rol in response.Roles)
+                {
+                    if (rol == "Agent" || rol == "Client") throw new Exception("No tiene permiso para usar el web api.");
+                }
+            }
+            return response;
         }
     }
 }
