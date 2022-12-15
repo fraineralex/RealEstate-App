@@ -203,6 +203,18 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            return View(await _propertiesService.GetByIdWithInclude(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            await _propertiesService.Delete(id);
+            UploadImagesHelper.DeletePropertyImage(id);
+            return RedirectToRoute(new { controller = "Agent", action = "Index" });
+        }
 
 
 

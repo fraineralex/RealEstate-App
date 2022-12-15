@@ -127,5 +127,29 @@ namespace RealEstateApp.Core.Application.Helpers
             }
             return $"{basePath}/{fileName}";
         }
+
+        public static void DeletePropertyImage(int id)
+        {
+            string basePath = $"/Images/Properties/{id}";
+            string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{basePath}");
+
+            if (Directory.Exists(path))
+            {
+                DirectoryInfo directory = new(path);
+
+                foreach (FileInfo file in directory.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo folder in directory.GetDirectories())
+                {
+                    folder.Delete(true);
+                }
+
+                Directory.Delete(path);
+            }
+        }
+
+
     }
 }
