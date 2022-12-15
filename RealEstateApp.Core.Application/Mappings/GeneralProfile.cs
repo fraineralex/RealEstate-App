@@ -57,6 +57,7 @@ namespace RealEstateApp.Core.Application.Mappings
 
             #region ImprovementsProfile
             CreateMap<Improvements, ImprovementsViewModel>()
+               .ForMember(x => x.IsChecked, opt => opt.Ignore())
                .ReverseMap()
                .ForMember(x => x.Created, opt => opt.Ignore())
                .ForMember(x => x.CreatedBy, opt => opt.Ignore())
@@ -72,7 +73,9 @@ namespace RealEstateApp.Core.Application.Mappings
               .ForMember(x => x.LastModifiedBy, opt => opt.Ignore());
 
             CreateMap<ImprovementsViewModel, SaveImprovementsViewModel>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(x => x.IsChecked, opt => opt.Ignore());
+
 
             #endregion
 
