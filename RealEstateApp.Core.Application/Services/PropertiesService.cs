@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using RealEstateApp.Core.Application.DTOs.Account;
 using RealEstateApp.Core.Application.Helpers;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
@@ -282,6 +283,11 @@ namespace RealEstateApp.Core.Application.Services
             return propertyDetailsViewModel;
         }
 
+        public async Task DeleteImprovementsToProperties(int id)
+        {
+
+           await _propertiesRepository.DeleteImprovementsToProperties(id);
+        }
 
     }
 }

@@ -266,6 +266,7 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
         {
             await _propertiesService.Delete(id);
             UploadImagesHelper.DeletePropertyImage(id);
+            await _propertiesService.DeleteImprovementsToProperties(id);
             return RedirectToRoute(new { controller = "Agent", action = "GetAll" });
         }
 

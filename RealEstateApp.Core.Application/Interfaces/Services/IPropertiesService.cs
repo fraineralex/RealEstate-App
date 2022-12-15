@@ -28,6 +28,7 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task UpdatePropertyWithImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel, int id);
         Task<PropertyDetailsViewModel> GetPropertyDetailsAsync(int propertyId);
 
+        Task DeleteImprovementsToProperties(int id);
 
     }
 }
