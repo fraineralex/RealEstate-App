@@ -2,6 +2,7 @@
 using MediatR;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RealEstateApp.Core.Application.Features.Improvements.Queries.GetImprov
 {
     public class GetImprovementsByIdQuery : IRequest<ImprovementsViewModel>
     {
+        [SwaggerParameter(Description = "El Id de la mejora que desea consultar")]
         public int Id { get; set; }
     }
     public class GetImprovementsByIdQueryHandler : IRequestHandler<GetImprovementsByIdQuery, ImprovementsViewModel>

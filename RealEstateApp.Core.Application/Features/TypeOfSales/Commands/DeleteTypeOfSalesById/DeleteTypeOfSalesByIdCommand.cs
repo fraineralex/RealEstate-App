@@ -1,10 +1,12 @@
 ﻿using MediatR;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace RealEstateApp.Core.Application.Features.TypeOfSales.Commands.DeleteTypeOfSales
 {
     public class DeleteTypeOfSalesByIdCommand : IRequest<int>
     {
+        [SwaggerParameter(Description = "El Id del tipo de venta que se quiere eliminar")]
         public int Id { get; set; }
     }
 

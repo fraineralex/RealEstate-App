@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace RealEstateApp.Presentation.WebApi.Extensions
 {
@@ -24,6 +25,10 @@ namespace RealEstateApp.Presentation.WebApi.Extensions
                         Url = new Uri("https://czaiz.com")
                     }
                 });
+                
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
 
                 options.EnableAnnotations();
                 options.DescribeAllParametersInCamelCase();

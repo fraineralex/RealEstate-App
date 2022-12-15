@@ -9,7 +9,7 @@ namespace RealEstateApp.Presentation.WebApi.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurant API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "RealState API");
                 options.DefaultModelRendering(ModelRendering.Model);
             });
         }

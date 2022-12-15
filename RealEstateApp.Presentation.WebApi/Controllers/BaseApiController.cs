@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RealEstateApp.Presentation.WebApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class BaseApiController : ControllerBase
     {
         private IMediator _mediator;

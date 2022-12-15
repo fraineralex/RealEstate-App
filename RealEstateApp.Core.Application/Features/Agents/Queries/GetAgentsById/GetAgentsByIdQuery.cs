@@ -3,6 +3,7 @@ using MediatR;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.Agents;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace RealEstateApp.Core.Application.Features.Agents.Queries.GetAgentsById
 {
     public class GetAgentsByIdQuery : IRequest<AgentsViewModel>
     {
+        [SwaggerParameter(Description = "El Id del agente que desea consultar")]
         public string Id { get; set; }
     }
     public class GetAgentsByIdQueryHandler : IRequestHandler<GetAgentsByIdQuery, AgentsViewModel>

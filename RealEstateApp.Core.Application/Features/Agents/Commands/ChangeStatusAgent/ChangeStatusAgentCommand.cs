@@ -2,6 +2,7 @@
 using MediatR;
 using RealEstateApp.Core.Application.Features.Agents.Commands.ChangeStatusAgent;
 using RealEstateApp.Core.Application.Interfaces.Services;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace RealEstateApp.Core.Application.Features.Agents.Commands.CreateAgents
 {
     public class ChangeStatusAgentCommand: IRequest<bool>
     {
+        [SwaggerParameter(Description = "El Id del agente")]
         public string Id { get; set; }
+        [SwaggerParameter(Description = "El estado a cambiar")]
         public bool Status { get; set; }
     }
     public class ChangeStatusAgentCommandHandler : IRequestHandler<ChangeStatusAgentCommand, bool>

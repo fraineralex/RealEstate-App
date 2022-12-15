@@ -9,6 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
+    [ApiVersion("1.0")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     [SwaggerTag("Consultas Propiedades")]

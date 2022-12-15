@@ -7,16 +7,21 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales
 {
     using RealEstateApp.Core.Domain.Entities;
+   
+
     public class CreateTypeOfSalesCommand : IRequest<int>
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
+        [SwaggerParameter(Description = "El nombre del tipo de venta")]
         [Required(ErrorMessage = "El nombre es requerido.")]
         public string Name { get; set; }
         [Required(ErrorMessage = "La descripcion es requerida.")]
+        [SwaggerParameter(Description = "La descripcion del tipo de venta")]
         public string Description { get; set; }
     }
 

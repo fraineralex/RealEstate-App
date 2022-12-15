@@ -2,6 +2,7 @@
 using MediatR;
 using RealEstateApp.Core.Application.Interfaces.Repositories;
 using RealEstateApp.Core.Application.ViewModels.TypeOfSales;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace RealEstateApp.Core.Application.Features.TypeOfSales.Queries.GetTypeOfS
 {
     public class GetTypeOfSalesByIdQuery : IRequest<TypeOfSalesViewModel>
     {
+        [SwaggerParameter(Description = "El Id del tipo de venta que se quiere consultar")]
         public int Id { get; set; }
     }
     public class GetTypeOfSalesByIdQueryHandler : IRequestHandler<GetTypeOfSalesByIdQuery, TypeOfSalesViewModel>
