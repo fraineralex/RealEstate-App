@@ -25,7 +25,7 @@
             <div class="col-4 ">
                 <div class="mx-auto card bg-dark text-white mt-3" style="border-radius: 1rem;">
                     <div class="card-body">
-                        <img class="rounded-circle" alt="avatar" width="50" height="50" src="@user.ImagePath" />
+                        <img class="bd-placeholder-img card-img-top" src="@user.ImagePath" />
                         <h4 class="fw-bold mb-3 text-uppercase mt-2 fs-5"><i class="bi bi-people-fill"></i> <i class="text-white"> @user.FirstName @user.LastName</i></h4>
                         <a asp-controller="Home" asp-action="AgentProperties" asp-route-id="@user.Id" asp-route-userName="@user.UserName" class="btn btn-light">See Properties</a>
 

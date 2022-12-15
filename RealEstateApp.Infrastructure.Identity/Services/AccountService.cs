@@ -70,6 +70,9 @@ namespace RealEstateApp.Infrastructure.Identity.Services
             response.Id = user.Id;
             response.Email = user.Email;
             response.UserName = user.UserName;
+            response.ImagePath = user.ImagePath;
+            response.FirstName = user.FirstName;
+            response.LastName = user.LastName;
 
             var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
 
