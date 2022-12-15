@@ -167,7 +167,7 @@ namespace RealEstateApp.Core.Application.Services
 
         }
 
-        public async Task<List<PropertiesViewModel>> GetAllWithProperties()
+        public async Task<List<PropertiesViewModel>> GetAllWithInclude()
         {
             var propertiesList = await _repository.GetAllWithIncludeAsync(new List<string> { "Improvements", "TypeOfProperty", "TypeOfSale" });
             propertiesList.OrderByDescending(x => x.Created);
@@ -193,6 +193,67 @@ namespace RealEstateApp.Core.Application.Services
             }
 
             return propertiesViewModelList;
+        }
+
+        public async Task<SavePropertiesViewModel> GetByIdWithInclude(int id)
+        {
+            var propertiesList = await GetAllWithInclude();
+            PropertiesViewModel property = new PropertiesViewModel();
+
+            foreach (var item in propertiesList)
+            {
+                if (id == item.Id)
+                {
+                    property = _mapper.Map<PropertiesViewModel>(item);
+                }
+            }
+
+
+            return _mapper.Map<SavePropertiesViewModel>(property);
+        }
+
+        public async Task<List<PropertiesViewModel>> GetAllByAgentIdWithInclude(string agentId)
+        {
+            var propertiesList = await _repository.GetAllWithIncludeAsync(new List<string> { "Improvements", "TypeOfProperty", "TypeOfSale" });
+            propertiesList.OrderByDescending(x => x.Created);
+            List<PropertiesViewModel> propertiesViewModelList = new List<PropertiesViewModel>();
+            PropertiesViewModel properties = new PropertiesViewModel();
+
+            foreach (var property in propertiesList)
+            {
+                List<ImprovementsViewModel> improvementsViewModelsList = new List<ImprovementsViewModel>();
+
+                foreach (var improvement in property.Improvements)
+                {
+                    improvementsViewModelsList.Add(_mapper.Map<ImprovementsViewModel>(improvement));
+                }
+
+
+                properties = _mapper.Map<PropertiesViewModel>(property);
+                properties.TypeOfSale = _mapper.Map<TypeOfSalesViewModel>(property.TypeOfSale);
+                properties.TypeOfProperty = _mapper.Map<TypeOfPropertiesViewModel>(property.TypeOfProperty);
+                properties.Improvements = improvementsViewModelsList;
+                propertiesViewModelList.Add(properties);
+
+            }
+
+            return propertiesViewModelList.Where(prop => prop.AgentId == agentId).ToList();
+        }
+
+        public async Task UpdatePropertyWithImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel, int id)
+        {
+            var property = _mapper.Map<Properties>(savePropertiesViewModel);
+
+            List<Improvements> improvementsList = new List<Improvements>();
+
+            foreach (var item in savePropertiesViewModel.Improvements)
+            {
+                improvementsList.Add(_mapper.Map<Improvements>(item));
+            }
+
+            property.Improvements = improvementsList;
+            await _propertiesRepository.UpdateAsync(property, id);
+
         }
 
     }

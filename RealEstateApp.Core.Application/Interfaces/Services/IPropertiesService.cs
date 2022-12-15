@@ -21,7 +21,11 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<SavePropertiesViewModel> AddWithImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel);
 
         Task AddImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel);
-        Task<List<PropertiesViewModel>> GetAllWithProperties();
+        Task<List<PropertiesViewModel>> GetAllWithInclude();
+        Task<SavePropertiesViewModel> GetByIdWithInclude(int id);
+        Task<List<PropertiesViewModel>> GetAllByAgentIdWithInclude(string agentId);
+
+        Task UpdatePropertyWithImprovementsAsync(SavePropertiesViewModel savePropertiesViewModel, int id);
 
     }
 }

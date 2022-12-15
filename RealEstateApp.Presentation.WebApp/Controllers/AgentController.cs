@@ -38,7 +38,7 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var properties = await _propertiesService.GetAllWithProperties();
+            var properties = await _propertiesService.GetAllByAgentIdWithInclude(userviewModel.Id);
             return View(properties);
         }
 
@@ -110,8 +110,97 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var vm = await _propertiesService.GetByIdWithData(id);
+            var vm = await _propertiesService.GetByIdWithInclude(id);
+            vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
+            vm.TypeOfSales = await _typeOfSalesService.GetAllViewModel();
+            ViewBag.AllImprovements = await _improvementsService.GetAllViewModel();
             return View("SaveProperty", vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(SavePropertiesViewModel vm)
+        {
+            if(!ModelState.IsValid)
+            {
+                vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
+                vm.TypeOfSales = await _typeOfSalesService.GetAllViewModel();
+                return View("SaveProperty", vm);
+
+            }
+
+            SavePropertiesViewModel savePropertiesVmToUpdate = await _propertiesService.GetByIdWithInclude(vm.Id);
+
+            if (vm.ImageFileOne != null)
+            {
+                if (savePropertiesVmToUpdate.ImagePathOne == null || savePropertiesVmToUpdate.ImagePathOne == "")
+                {
+                    savePropertiesVmToUpdate.ImagePathOne = UploadImagesHelper.UploadPropertyImage(vm.ImageFileOne, savePropertiesVmToUpdate.Id);
+                }
+
+                else if (savePropertiesVmToUpdate.ImagePathOne != null && savePropertiesVmToUpdate.ImagePathOne != "")
+                {
+                    savePropertiesVmToUpdate.ImagePathOne = UploadImagesHelper.UploadPropertyImage(vm.ImageFileOne, savePropertiesVmToUpdate.Id, true, savePropertiesVmToUpdate.ImagePathOne);
+                }
+            }
+
+            else if (vm.ImageFileTwo != null)
+            {
+                if (savePropertiesVmToUpdate.ImagePathTwo == null || savePropertiesVmToUpdate.ImagePathTwo == "")
+                {
+                    savePropertiesVmToUpdate.ImagePathTwo = UploadImagesHelper.UploadPropertyImage(vm.ImageFileTwo, savePropertiesVmToUpdate.Id);
+                }
+
+                else if (savePropertiesVmToUpdate.ImagePathTwo != null && savePropertiesVmToUpdate.ImagePathTwo != "")
+                {
+                    savePropertiesVmToUpdate.ImagePathTwo = UploadImagesHelper.UploadPropertyImage(vm.ImageFileTwo, savePropertiesVmToUpdate.Id, true, savePropertiesVmToUpdate.ImagePathTwo);
+                }
+            }
+
+            else if (vm.ImageFileThree != null)
+            {
+                if (savePropertiesVmToUpdate.ImagePathThree == null || savePropertiesVmToUpdate.ImagePathThree == "")
+                {
+                    savePropertiesVmToUpdate.ImagePathThree = UploadImagesHelper.UploadPropertyImage(vm.ImageFileThree, savePropertiesVmToUpdate.Id);
+                }
+
+                else if (savePropertiesVmToUpdate.ImagePathThree != null && savePropertiesVmToUpdate.ImagePathThree != "")
+                {
+                    savePropertiesVmToUpdate.ImagePathThree = UploadImagesHelper.UploadPropertyImage(vm.ImageFileThree, savePropertiesVmToUpdate.Id, true, savePropertiesVmToUpdate.ImagePathThree);
+                }
+            }
+
+            else if (vm.ImageFileFour != null)
+            {
+                if (savePropertiesVmToUpdate.ImagePathFour == null || savePropertiesVmToUpdate.ImagePathFour == "")
+                {
+                    savePropertiesVmToUpdate.ImagePathFour = UploadImagesHelper.UploadPropertyImage(vm.ImageFileFour, savePropertiesVmToUpdate.Id);
+                }
+
+                else if (savePropertiesVmToUpdate.ImagePathFour != null && savePropertiesVmToUpdate.ImagePathFour != "")
+                {
+                    savePropertiesVmToUpdate.ImagePathFour = UploadImagesHelper.UploadPropertyImage(vm.ImageFileFour, savePropertiesVmToUpdate.Id, true, savePropertiesVmToUpdate.ImagePathFour);
+                }
+            }
+
+            List<ImprovementsViewModel> improvementsList = new List<ImprovementsViewModel>();
+            foreach (var item in vm.ImprovementsId)
+            {
+                improvementsList.Add(_mapper.Map<ImprovementsViewModel>(await _improvementsService.GetByIdSaveViewModel(item)));
+            }
+
+            savePropertiesVmToUpdate.Improvements = improvementsList;
+            savePropertiesVmToUpdate.Price = vm.Price;
+            savePropertiesVmToUpdate.LandSize = vm.LandSize;
+            savePropertiesVmToUpdate.NumberOfRooms = vm.NumberOfRooms;
+            savePropertiesVmToUpdate.NumberOfBathrooms = vm.NumberOfBathrooms;
+            savePropertiesVmToUpdate.Description = vm.Description;
+            savePropertiesVmToUpdate.TypeOfPropertyId = vm.TypeOfPropertyId;
+            savePropertiesVmToUpdate.TypeOfSaleId = vm.TypeOfSaleId;
+            savePropertiesVmToUpdate.ImprovementsId = vm.ImprovementsId;
+
+            await _propertiesService.UpdatePropertyWithImprovementsAsync(savePropertiesVmToUpdate, savePropertiesVmToUpdate.Id);
+            return RedirectToRoute(new { controller = "Agent", action = "Index" });
+
         }
 
 
