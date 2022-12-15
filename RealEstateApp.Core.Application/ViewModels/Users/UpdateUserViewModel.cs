@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace RealEstateApp.Core.Application.ViewModels.Users
 {
-    public class SaveUserViewModel
+    public class UpdateUserViewModel
     {
+        public string? Id { get; set; }
 
         [Required(ErrorMessage = "You must type your First Name")]
         [DataType(DataType.Text)]
@@ -20,16 +21,14 @@ namespace RealEstateApp.Core.Application.ViewModels.Users
         public string? LastName { get; set; }
 
 
-        [Required(ErrorMessage = "You must type the User Name")]
+        [Required(ErrorMessage = "You must type the Username")]
         [DataType(DataType.Text)]
         public string? UserName { get; set; }
 
-        [Required(ErrorMessage = "You must type the Password")]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
         [Compare(nameof(Password), ErrorMessage = "Passwords must be the same")]
-        [Required(ErrorMessage = "You must type the password")]
         [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set; }
 
@@ -41,17 +40,12 @@ namespace RealEstateApp.Core.Application.ViewModels.Users
         [DataType(DataType.Text)]
         public string? Email { get; set; }
 
-        [Required(ErrorMessage = "You must type the Phone Number")]
-        [DataType(DataType.Text)]
-        public string? Phone { get; set; }
 
         public string? ImagePath { get; set; }
+
         [Required(ErrorMessage = "You must type the ID card")]
         [DataType(DataType.Text)]
         public string? IDCard { get; set; }
-
-        [DataType(DataType.Upload)]
-        public IFormFile? File { get; set; }
 
         public bool HasError { get; set; }
         public string? Error { get; set; }

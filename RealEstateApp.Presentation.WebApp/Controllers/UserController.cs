@@ -103,8 +103,6 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
                 return View(vm);
             }
 
-
-
             vm.ImagePath = UploadImagesHelper.UploadUserImage(vm.File, vm.UserName);
 
             var origin = Request.Headers["origin"];

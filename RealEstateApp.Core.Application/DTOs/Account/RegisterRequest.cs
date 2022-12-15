@@ -15,6 +15,7 @@ namespace RealEstateApp.Core.Application.DTOs.Account
         public string? Password { get; set; }
         public string? ConfirmPassword { get; set; }
         public string? Phone { get; set; }
+        public string? IDCard { get; set; }
         public string? ImagePath { get; set; }
         public bool EmailConfirmed { get; set; } = false;
 

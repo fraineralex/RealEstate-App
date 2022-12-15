@@ -74,3 +74,42 @@ function Delete(Id, Controller, name) {
         }
     });
 }
+
+function ChangeUserStatus(action, name, id) {
+    Swal.fire({
+        title: `Are you sure you want to ${action} this ${name}?`,
+        text: "Make sure before acept this action",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Change",
+        reverseButtons: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire("Deleted!", `${name} changed successfully`, "success");
+
+            setTimeout(() => {
+                let form = document.createElement("form");
+                form.action = `/Admin/ChangeUserStatus`;
+                form.method = "POST";
+
+                let entityId = document.createElement("input");
+                entityId.type = "hidden";
+                entityId.name = "Id";
+                entityId.value = `${id}`;
+
+                let entityRole = document.createElement("input");
+                entityRole.type = "hidden";
+                entityRole.name = "Role";
+                entityRole.value = `${name}`;
+
+                form.appendChild(entityId);
+                form.appendChild(entityRole);
+
+                document.body.append(form);
+                form.submit();
+            }, 1000);
+        }
+    });
+}

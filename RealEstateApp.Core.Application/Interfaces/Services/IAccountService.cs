@@ -22,5 +22,8 @@ namespace RealEstateApp.Core.Application.Interfaces.Services
         Task<UpdateAgentUserResponse> GetAgentUserByUserNameAsync(string userName);
         Task<HomeAdminViewModel> GetUsersQuantity();
         Task<List<UserViewModel>> GetAllUserViewModels();
+        Task<UpdateAgentUserResponse> UpdateUserAsync(UpdateUserViewModel request);
+        Task<ChangeUserStatusResponse> ChageUserStatusAsync(string id);
+        Task<ChangeUserStatusResponse> DeleteUserAsync(string id);
     }
 }

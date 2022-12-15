@@ -65,5 +65,17 @@ namespace RealEstateApp.Core.Application.Services
             return await _accountService.GetAllUserViewModels();
         }
 
+        public async Task<UpdateUserViewModel> GetUserSaveViewModelByUsername(string username)
+        {
+            List<UserViewModel> userViewModelsList = await _accountService.GetAllUserViewModels();
+
+            return _mapper.Map<List<UpdateUserViewModel>>(userViewModelsList).Where(user => user.UserName == username).FirstOrDefault();
+        }
+
+        public async Task<UpdateAgentUserResponse> Update(UpdateUserViewModel vm)
+        {
+            return await _accountService.UpdateUserAsync(vm);
+        }
+
     }
 }

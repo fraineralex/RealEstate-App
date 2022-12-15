@@ -9,6 +9,7 @@ using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.CreateTy
 using RealEstateApp.Core.Application.Features.TypeOfProperties.Commands.UpdateTypeOfProperties;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.CreateTypeOfSales;
 using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.UpdateTypeOfSales;
+using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 using RealEstateApp.Core.Application.ViewModels.Properties;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
@@ -148,6 +149,22 @@ namespace RealEstateApp.Core.Application.Mappings
              .ForMember(x => x.LastModified, opt => opt.Ignore())
              .ForMember(x => x.LastModifiedBy, opt => opt.Ignore());
 
+            #endregion
+
+            #region "User"
+            CreateMap<UserViewModel, UpdateUserViewModel>()
+             .ForMember(x => x.ConfirmPassword, opt => opt.Ignore())
+             .ForMember(x => x.CurrentPassword, opt => opt.Ignore())
+             .ForMember(x => x.Password, opt => opt.Ignore())
+             .ForMember(x => x.Error, opt => opt.Ignore())
+             .ForMember(x => x.HasError, opt => opt.Ignore())
+             .ReverseMap()
+             .ForMember(x => x.Role, opt => opt.Ignore());
+
+            CreateMap<UpdateUserViewModel, SaveUserViewModel>()
+             .ForMember(x => x.File, opt => opt.Ignore())
+             .ForMember(x => x.Phone, opt => opt.Ignore())
+             .ReverseMap();
             #endregion
 
             #region CQRS
