@@ -38,7 +38,22 @@
                     <div class="card shadow-sm mb-3">
                         <img class="bd-placeholder-img card-img-top" src="@property.ImagePathOne" />
 
-                  
+                        @*@if(property.ImagePathTwo != null && property.ImagePathTwo != ""){
+                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathTwo" />
+
+                }
+
+                @if (property.ImagePathThree != null && property.ImagePathThree != "")
+                {
+                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathThree" />
+
+                }
+
+                @if (property.ImagePathFour != null && property.ImagePathFour != "")
+                {
+                <img class="bd-placeholder-img card-img-top" src="@property.ImagePathFour" />
+
+                }*@
 
                         <div class="card-body">
                             <h4>Type of Property:@property.TypeOfProperty.Name</h4>
@@ -53,7 +68,9 @@
                             {
                                 <p class="card-text">@item.Name</p>
                             }
-                       
+                            <a asp-controller="Agent" asp-action="Edit" asp-route-id="@property.Id" class="btn btn-info">Edit</a>
+                            <a asp-controller="Agent" asp-action="Delete" asp-route-id="@property.Id" class="btn btn-danger">Delete</a>
+
 
                         </div>
                     </div>
@@ -68,4 +85,4 @@
 
     </div>
 
-    </section>
+</section>

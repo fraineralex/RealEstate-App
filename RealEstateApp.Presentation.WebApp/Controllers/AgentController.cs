@@ -42,6 +42,12 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             return View(properties);
         }
 
+        public async Task<IActionResult> GetAll()
+        {
+            var properties = await _propertiesService.GetAllByAgentIdWithInclude(userviewModel.Id);
+            return View(properties);
+        }
+
         public async Task<IActionResult> Create()
         {
             SavePropertiesViewModel vm = new SavePropertiesViewModel();
