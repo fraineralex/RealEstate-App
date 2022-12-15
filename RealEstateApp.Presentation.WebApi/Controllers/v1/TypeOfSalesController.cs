@@ -65,13 +65,6 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
             }
         }
 
-        /// <summary>
-        /// Short, descriptive title of the operation
-        /// </summary>
-        /// <remarks>
-        /// More elaborate description
-        /// </remarks>
-        /// <param name="id">Here is the description for ID.</param>
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [SwaggerOperation(
