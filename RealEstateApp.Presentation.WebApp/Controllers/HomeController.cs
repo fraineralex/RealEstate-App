@@ -75,6 +75,25 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             return View(AgentsList.OrderBy(x => x.FirstName).ToList());
         }
 
+        public async Task<IActionResult> FilterAgent(string agentName)
+        {
+            var usersList = await _userService.GetAllUsersViewModels();
+            List<UserViewModel> AgentsList = usersList.Where(user => user.Role == Roles.Agent.ToString()).ToList();
+
+            agentName = agentName.ToLower();
+
+            AgentsList = AgentsList.Where(agent => agent.FirstName.ToLower() == agentName || agent.LastName.ToLower() == agentName || agent.FirstName.ToLower() + " " + agent.LastName.ToLower() == agentName).ToList();
+
+            List<PropertiesViewModel> propertiesList = await _propertiesService.GetAll();
+
+            foreach (UserViewModel agent in AgentsList)
+            {
+                agent.PropertiesQuantity = propertiesList.Where(property => property.AgentId == agent.Id).Count();
+            }
+
+            return View("Agents", AgentsList.OrderBy(x => x.FirstName).ToList());
+        }
+
         public async Task<IActionResult> AgentProperties(string id, string userName)
         {
             ViewBag.UserName = userName;
