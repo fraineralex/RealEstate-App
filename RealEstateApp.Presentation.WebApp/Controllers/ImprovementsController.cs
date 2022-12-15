@@ -34,6 +34,23 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (currentlyUser.Roles.FirstOrDefault() == Roles.Agent.ToString())
+            {
+                return RedirectToRoute(new { controller = "Agent", action = "Index" });
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             List<ImprovementsViewModel> improvementsList = await _improvementsService.GetAllViewModel();
             return View(improvementsList);
         }
@@ -41,6 +58,23 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(string ImprovementName, string ImprovementDescription)
         {
+            if (currentlyUser.Roles.FirstOrDefault() == Roles.Agent.ToString())
+            {
+                return RedirectToRoute(new { controller = "Agent", action = "Index" });
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("userVaidation", "Something was wrong");
@@ -62,12 +96,46 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+            if (currentlyUser.Roles.FirstOrDefault() == Roles.Agent.ToString())
+            {
+                return RedirectToRoute(new { controller = "Agent", action = "Index" });
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             await _improvementsService.Delete(id);
             return RedirectToRoute(new { controller = "Improvements", action = "Index" });
         }
 
         public async Task<IActionResult> Update(int id)
         {
+            if (currentlyUser.Roles.FirstOrDefault() == Roles.Agent.ToString())
+            {
+                return RedirectToRoute(new { controller = "Agent", action = "Index" });
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             SaveImprovementsViewModel improvementsSaveViewModel = await _improvementsService.GetByIdSaveViewModel(id);
 
             return View("UpdateImprovement", improvementsSaveViewModel);
@@ -77,6 +145,23 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Update(SaveImprovementsViewModel improvementsSaveViewModel)
         {
+            if (currentlyUser.Roles.FirstOrDefault() == Roles.Agent.ToString())
+            {
+                return RedirectToRoute(new { controller = "Agent", action = "Index" });
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (currentlyUser.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             await _improvementsService.Update(improvementsSaveViewModel, improvementsSaveViewModel.Id);
 
             return RedirectToRoute(new { controller = "Improvements", action = "Index" });

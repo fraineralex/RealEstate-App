@@ -8,6 +8,7 @@ using RealEstateApp.Core.Application.Helpers;
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 using RealEstateApp.Core.Application.ViewModels.Properties;
+using RealEstateApp.Presentation.WebApp.Middlewares;
 using System.Runtime.CompilerServices;
 
 namespace RealEstateApp.Presentation.WebApp.Controllers
@@ -38,18 +39,68 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
             var properties = await _propertiesService.GetAllByAgentIdWithInclude(userviewModel.Id);
             return View(properties);
         }
 
         public async Task<IActionResult> GetAll()
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             var properties = await _propertiesService.GetAllByAgentIdWithInclude(userviewModel.Id);
             return View(properties);
         }
 
         public async Task<IActionResult> Create()
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             SavePropertiesViewModel vm = new SavePropertiesViewModel();
             vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
             vm.TypeOfSales = await _typeOfSalesService.GetAllViewModel();
@@ -61,6 +112,23 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(SavePropertiesViewModel vm)
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             if (!ModelState.IsValid)
             {
                 vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
@@ -116,6 +184,23 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
             var vm = await _propertiesService.GetByIdWithInclude(id);
             vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
             vm.TypeOfSales = await _typeOfSalesService.GetAllViewModel();
@@ -149,7 +234,24 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(SavePropertiesViewModel vm)
         {
-            if(!ModelState.IsValid)
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
+            if (!ModelState.IsValid)
             {
                 var saveviewModel = await _propertiesService.GetByIdWithInclude(vm.Id);
                 saveviewModel.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
@@ -258,12 +360,48 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
+
             return View(await _propertiesService.GetByIdWithInclude(id));
         }
 
         [HttpPost]
         public async Task<IActionResult> DeletePost(int id)
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
+
             await _propertiesService.Delete(id);
             UploadImagesHelper.DeletePropertyImage(id);
             await _propertiesService.DeleteImprovementsToProperties(id);
@@ -274,12 +412,48 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
 
         public async Task<IActionResult> MyProfile()
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
+
             return View("UpdateAgentProfile", await _propertiesService.GetAgentUserByUserNameAsync(userviewModel.UserName));
         }
 
         [HttpPost]
         public async Task<IActionResult> MyProfile(SaveAgentProfileViewModel agentProfileViewModel)
         {
+            if (userviewModel.Roles.FirstOrDefault() == Roles.Admin.ToString())
+            {
+                return RedirectToRoute(new { controller = "Admin", action = "Index" });
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Client.ToString())
+            {
+                return RedirectToRoute(new { controller = "Client", action = "Index" });
+
+            }
+
+            else if (userviewModel.Roles.FirstOrDefault() == Roles.Developer.ToString())
+            {
+                return RedirectToRoute(new { controller = "Home", action = "AccessDenied" });
+
+            }
+
+
             if (!ModelState.IsValid)
             {
                 return View("UpdateAgentProfile", await _propertiesService.GetAgentUserByUserNameAsync(userviewModel.UserName));
