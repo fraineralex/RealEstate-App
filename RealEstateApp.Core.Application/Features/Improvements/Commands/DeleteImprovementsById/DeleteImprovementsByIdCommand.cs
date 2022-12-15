@@ -31,8 +31,8 @@ namespace RealEstateApp.Core.Application.Features.Improvements.Commands.DeleteIm
             if (improvements == null) throw new Exception("La mejora no fue encontrado.");
 
             var properties = await _propertiesRepository.GetAllAsync();
-
-            var propertiesRelational = properties.Where(x => x.ImprovementsId == command.Id).ToList();
+                                                        // Este era "x.Improvements.Id"
+            var propertiesRelational = properties.Where(x => x.TypeOfPropertyId == command.Id).ToList();
 
             if (propertiesRelational.Count() != 0)
             {

@@ -26,8 +26,8 @@ namespace RealEstateApp.Core.Application.Features.TypeOfSales.Commands.DeleteTyp
             if (typeOfSales == null) throw new Exception("El tipo de venta no fue encontrado.");
 
             var properties = await _propertiesRepository.GetAllAsync();
-
-            var propertiesRelational = properties.Where(x => x.ImprovementsId == command.Id).ToList();
+                                                            // Era "x.ImprovementsId"
+            var propertiesRelational = properties.Where(x => x.TypeOfSaleId == command.Id).ToList();
 
             if (propertiesRelational.Count() != 0)
             {

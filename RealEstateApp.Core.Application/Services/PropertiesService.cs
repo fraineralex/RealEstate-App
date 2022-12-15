@@ -22,7 +22,7 @@ namespace RealEstateApp.Core.Application.Services
         private readonly IGenericRepository<Properties> _repository;
         private readonly IPropertiesRepository _propertiesRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        //private readonly AuthenticationResponse userviewModel;
+        private readonly AuthenticationResponse userviewModel;
         private readonly IMapper _mapper;
         private readonly IAccountService _accountService;
         private readonly IImprovementsRepository _improvementsRepository;
@@ -38,7 +38,7 @@ namespace RealEstateApp.Core.Application.Services
             _improvementsRepository = improvementsRepository;
             _typeOfPropertiesRepository = typeOfPropertiesRepository;
             _typeOfSalesRepository = typeOfSalesRepository;
-            //userviewModel = _httpContextAccessor.HttpContext.Session.Get<AuthenticationResponse>("user");
+            userviewModel = _httpContextAccessor.HttpContext.Session.Get<AuthenticationResponse>("user");
             _accountService = accountService;
         }
 
@@ -46,7 +46,7 @@ namespace RealEstateApp.Core.Application.Services
         public async Task<SaveAgentProfileViewModel> UpdateAgentProfile (SaveAgentProfileViewModel agentProfileViewModel)
         {
             var agentProfileToUpdate = _mapper.Map<UpdateAgentUserRequest>(agentProfileViewModel);
-            //agentProfileToUpdate.UserName = userviewModel.UserName;
+            agentProfileToUpdate.UserName = userviewModel.UserName;
 
 
             var response = await _accountService.UpdateAgentUserByUserNameAsync(agentProfileToUpdate);

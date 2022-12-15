@@ -19,9 +19,9 @@ namespace RealEstateApp.Core.Application.ViewModels.Users
         [DataType(DataType.Text)]
         public string? LastName { get; set; }
 
-        [Required(ErrorMessage = "You must type your ID Card")]
-        [DataType(DataType.Text)]
-        public string? IDCard { get; set; }
+        //[Required(ErrorMessage = "You must type your ID Card")]
+        //[DataType(DataType.Text)]
+        //public string? IDCard { get; set; }
 
 
         [Required(ErrorMessage = "You must type the User Name")]
