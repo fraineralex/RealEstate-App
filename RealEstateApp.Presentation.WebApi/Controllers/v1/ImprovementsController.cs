@@ -9,6 +9,7 @@ using RealEstateApp.Core.Application.Features.Improvements.Queries.GetImprovemen
 using RealEstateApp.Core.Application.Interfaces.Services;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Net.Mime;
 
 namespace RealEstateApp.Presentation.WebApi.Controllers.v1
 {
@@ -94,6 +95,7 @@ namespace RealEstateApp.Presentation.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SaveImprovementsViewModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Consumes(MediaTypeNames.Application.Json)]
         public async Task<IActionResult> Update(int id, UpdateImprovementsCommand command)
         {
             try
