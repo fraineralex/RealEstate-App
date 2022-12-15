@@ -12,6 +12,7 @@ using RealEstateApp.Core.Application.Features.TypeOfSales.Commands.UpdateTypeOfS
 using RealEstateApp.Core.Application.ViewModels.Admin;
 using RealEstateApp.Core.Application.ViewModels.Improvements;
 using RealEstateApp.Core.Application.ViewModels.Properties;
+using RealEstateApp.Core.Application.ViewModels.PropertiesImprovements;
 using RealEstateApp.Core.Application.ViewModels.TypeOfProperties;
 using RealEstateApp.Core.Application.ViewModels.TypeOfSales;
 using RealEstateApp.Core.Application.ViewModels.Users;
@@ -107,6 +108,15 @@ namespace RealEstateApp.Core.Application.Mappings
               .ForMember(x => x.LastModified, opt => opt.Ignore())
               .ForMember(x => x.LastModifiedBy, opt => opt.Ignore());
 
+            #endregion
+
+            #region PropertiesImprovements
+            CreateMap<PropertiesImprovements, PropertiesImprovementsViewModel>()
+              .ReverseMap();
+
+            CreateMap<PropertiesImprovements, SavePropertiesImprovementsViewModel>()
+              .ReverseMap();
+             
             #endregion
 
             #region Properties
