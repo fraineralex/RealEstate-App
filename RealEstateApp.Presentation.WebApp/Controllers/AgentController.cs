@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 namespace RealEstateApp.Presentation.WebApp.Controllers
 {
-    //[Authorize(Roles = "Agent")]
+   // [Authorize(Roles = "Agent")]
     public class AgentController : Controller
     {
         private readonly IPropertiesService _propertiesService;
