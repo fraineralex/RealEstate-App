@@ -120,6 +120,26 @@ namespace RealEstateApp.Presentation.WebApp.Controllers
             vm.TypeOfProperties = await _typeOfPropertiesService.GetAllViewModel();
             vm.TypeOfSales = await _typeOfSalesService.GetAllViewModel();
             ViewBag.AllImprovements = await _improvementsService.GetAllViewModel();
+            var allImprovements = await _improvementsService.GetAllViewModel();
+
+            List<bool> isSelected = new List<bool>();
+
+            foreach (var item in allImprovements)
+            {
+                foreach (var item2 in vm.Improvements)
+                {
+                    if (item2.Id == item.Id)
+                    {
+                        isSelected.Add(true);
+                    }
+                    else
+                    {
+                        isSelected.Add(false);
+
+                    }
+                }
+            }
+
             return View("SaveProperty", vm);
         }
 

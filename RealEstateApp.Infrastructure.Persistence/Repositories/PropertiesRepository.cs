@@ -32,15 +32,34 @@ namespace RealEstateApp.Infrastructure.Persistence.Repositories
             {
                 propertiesImprovements.ImprovementId = item.Id;
                 propertiesImprovementsList.Add(propertiesImprovements);
+                await _dbContext.PropertiesImprovements.AddAsync(propertiesImprovements);
+                await _dbContext.SaveChangesAsync();
             }
 
-           
-            await _dbContext.PropertiesImprovements.AddRangeAsync(propertiesImprovementsList);
-            await _dbContext.SaveChangesAsync();
 
         }
 
-        
+        public async Task UpdateImprovementsToProperties(Properties property)
+        {
+
+            List<PropertiesImprovements> allPropertiesImprovementsList = await _dbContext.PropertiesImprovements.ToListAsync();
+
+            foreach (var item in allPropertiesImprovementsList)
+            {
+                if(item.PropertyId == property.Id)
+                {
+                    _dbContext.PropertiesImprovements.Remove(item);
+
+                }
+            }
+
+
+
+            await AddImprovementsToProperties(property);
+            await _dbContext.SaveChangesAsync();
+        }
+
+
 
 
     }

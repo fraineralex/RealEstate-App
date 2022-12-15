@@ -5,6 +5,8 @@
 @model SavePropertiesViewModel
 @{
     bool editMode = Model.Id == 0 ? false : true;
+    bool isSelected = false;
+
     ViewData["Title"] = "Save Property";
 }
 
@@ -95,13 +97,24 @@
                                             @foreach (ImprovementsViewModel item in Model.Improvements)
                                             {
                                                 @if(improvements.Id == item.Id){
-                                                    <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" checked />
-                                                    <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
+                                                    @isSelected = true;
+                                                    @*<input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" checked />
+                                                    <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>*@
                                                 }
                                                 else{
-                                                    <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" />
-                                                    <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
+                                                    @isSelected = false;
+                                                    @*<input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" />
+                                                    <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>*@
                                                 }
+                                            }
+                                            @if(isSelected){
+                                                <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" checked />
+                                                <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
+
+                                            }
+                                            else{
+                                                <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" />
+                                                <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
                                             }
                                             
                                         </div>
