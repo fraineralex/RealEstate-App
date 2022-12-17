@@ -1,0 +1,114 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Properties
+@model List<PropertiesViewModel>
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Welcome to Real State App, here you can manage the properties of the system. <i class="text-white">🚀</i>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @if (Model == null || Model.Count == 0)
+        {
+
+            <h2>There is no existing or created Properties</h2>
+        }
+        else
+        {
+            <div class="col-4">
+                <div class="mx-auto card bg-dark text-white mt-3" style="border-radius: 1rem;">
+                    <div class="card-body">
+
+                        <form method="post" asp-controller="Home" asp-action="Filters">
+                            <h5 class="fw-bold mb-3 text-primary mt-4 fs-5"><i class="text-primary">Filter property code</i></h5>
+
+                            <div class="p-2 me-5">
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="PropertyCode" name="PropertyCode">
+                            </div>
+
+                            <h5 class="fw-bold mb-3 text-primary mt-2 fs-5"><i class="text-primary">Filter by type of property</i></h5>
+
+                            <select class="mt-2 me-2 form-control bg-white text-white border-white form-control-lg" id="checkboxes-select" multiple name="PropertyIds" placeholder="Select the properties"
+                                data-search="false" data-silent-initial-value-set="true" aria-describedby="button">
+                                @foreach (var typeOfProperty in ViewBag.TypeOfPropertiesList)
+                                {
+                                    <option value="@typeOfProperty.Id">@typeOfProperty.Name</option>
+                                }
+                            </select>
+
+                            <h5 class="fw-bold mb-3 text-primary mt-4 fs-5"><i class="text-primary">Filter by price</i></h5>
+
+                            <div class="p-2 me-5">
+                                <label for="MinPrice" class="form-label text-white"><strong>Min price </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="MinPrice" name="MinPrice">
+                            </div>
+
+                            <div class="p-2 pt-0 me-5">
+                                <label for="MaxPrice" class="form-label text-white"><strong>Max price </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="MaxPrice" name="MaxPrice">
+                            </div>
+
+                            <h5 class="fw-bold mb-3 text-primary mt-3 fs-5"><i class="text-primary">Filter by bathrooms and rooms</i></h5>
+
+                            <div class="p-2 me-5">
+                                <label for="BathroomsQuantity" class="form-label text-white"><strong>Number Of Bathrooms </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="BathroomsQuantity" name="BathroomsQuantity">
+                            </div>
+
+                            <div class="p-2 pt-0 me-5">
+                                <label for="RoomsQuantity" class="form-label text-white"><strong>Number Of Rooms </strong></label>
+                                <input type="number" class="form-control bg-dark text-white border-white form-control-lg" id="RoomsQuantity" name="RoomsQuantity">
+                            </div>
+
+                            <button type="submit" class="btn btn-info float-end me-2 mt-2">Filter</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-8 row">
+
+                @foreach (PropertiesViewModel property in Model)
+                {
+
+                    <div class="col-6">
+                        <div class="card shadow-sm mb-3 bg-dark text-white">
+                            <img class="bd-placeholder-img card-img-top" src="@property.ImagePathOne" />
+
+                            <div class="card-body">
+                                <h4 class="fw-bold text-uppercase fs-4">@property.TypeOfProperty.Name</h4>
+                                <p class="card-text fw-bold fs-6">Code: <i class="fs-6 fw-normal" class>@property.Code</i></p>
+                                <p class="card-text fw-bold fs-5">@property.TypeOfSale.Name</p>
+                                <p class="card-text text-primary fw-bold fs-6">RD$ @property.Price</p>
+                                <p class="card-text fw-bold fs-5">🛏️ @property.NumberOfRooms 🛁 @property.NumberOfBathrooms 📐 @property.LandSize mt</p>
+
+
+                                <a asp-controller="Home" asp-action="Details" asp-route-id="@property.Id" class="btn btn-sm btn-primary float-end"><i class="bi bi-info-circle-fill"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        }
+
+
+
+
+
+    </div>
+
+</section>

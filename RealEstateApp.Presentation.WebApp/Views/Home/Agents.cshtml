@@ -1,0 +1,57 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Admin
+@model List<UserViewModel>
+@{
+    ViewData["Title"] = "Agents List";
+}
+
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary"><i class="bi bi-people-fill"></i> Agents List</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Here you can manager the agents of the system. <i class="text-white">🚀</i>
+            </p>
+
+            <div class="mx-auto card bg-dark text-white mt-5 mb-4" style="border-radius: 1rem;">
+                <div class="card-body">
+
+                    <form method="post" asp-controller="Home" asp-action="FilterAgent">
+                        <h5 class="fw-bold mb-3 text-primary mt-4 fs-5"><i class="text-primary">Filter agent</i></h5>
+
+                        <div class="p-2 me-5">
+                            <input type="text" class="form-control bg-dark text-white border-white form-control-lg" id="PropertyCode" name="AgentName" placeholder="Agent name" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-info float-end me-2 mt-2">Filter</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="row mb-5 mx-auto">
+    @if (Model.Count != 0)
+    {
+        @foreach (UserViewModel user in Model)
+        {
+            <div class="col-4 ">
+                <div class="mx-auto card bg-dark text-white mt-3" style="border-radius: 1rem;">
+                    <div class="card-body">
+                        <img class="bd-placeholder-img card-img-top" src="@user.ImagePath" />
+                        <h4 class="fw-bold mb-3 text-uppercase mt-2 fs-5"><i class="bi bi-people-fill"></i> <i class="text-white"> @user.FirstName @user.LastName</i></h4>
+                        <a asp-controller="Home" asp-action="AgentProperties" asp-route-id="@user.Id" asp-route-userName="@user.UserName" class="btn btn-light">See Properties</a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+
+        <h4 class="fs-4 fw-bold text-secondary mt-5 text-center mb-5"><i class="bi bi-rocket-takeoff-fill"></i> No Agents yet</h4>
+    }
+</div>

@@ -1,0 +1,60 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Properties
+@model List<PropertiesViewModel>
+@{
+    ViewData["Title"] = "Agent Properties";
+}
+
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Welcome to Real State App, here you can see all the @ViewBag.UserName's Properties of the system. <i class="text-white">🚀</i>
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        @if (Model == null || Model.Count == 0)
+        {
+
+            <h2>There is no existing or created Properties of this agent</h2>
+        }
+        else
+        {
+
+            @foreach (PropertiesViewModel property in Model)
+            {
+
+                <div class="col-4">
+                    <div class="card shadow-sm mb-3 bg-dark text-white">
+                        <img class="bd-placeholder-img card-img-top" src="@property.ImagePathOne" />
+
+                        <div class="card-body">
+                            <h4 class="fw-bold text-uppercase fs-4">@property.TypeOfProperty.Name</h4>
+                            <p class="card-text fw-bold fs-6">Code: <i class="fs-6 fw-normal" class>@property.Code</i></p>
+                            <p class="card-text fw-bold fs-5">@property.TypeOfSale.Name</p>
+                            <p class="card-text text-primary fw-bold fs-6">RD$ @property.Price</p>
+                            <p class="card-text fw-bold fs-5">🛏️ @property.NumberOfRooms 🛁 @property.NumberOfBathrooms 📐 @property.LandSize mt</p>
+
+
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@property.Id" class="btn btn-sm btn-primary float-end"><i class="bi bi-info-circle-fill"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+      
+
+        }
+
+
+
+
+
+    </div>
+
+</section>

@@ -1,49 +1,278 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using RealEstateApp.Core.Application.Helpers
+@using RealEstateApp.Core.Application.DTOs.Account
+@using RealEstateApp.Core.Application.Enums
+@inject IHttpContextAccessor httpContextAccessor
+@{
+    var user = httpContextAccessor.HttpContext.Session.Get<AuthenticationResponse>("user");
+    var isAdmin = user != null ? user.Roles.Any(r => r == Roles.Admin.ToString()) : false;
+    var isClient = user != null ? user.Roles.Any(r => r == Roles.Client.ToString()) : false;
+    var isAgent = user != null ? user.Roles.Any(r => r == Roles.Agent.ToString()) : false;
+    var isDeveloper = user != null ? user.Roles.Any(r => r == Roles.Developer.ToString()) : false;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RealEstateApp.Presentation.WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RealEstateApp.Presentation.WebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="~/css/virtual-select.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RealEstateApp.Presentation.WebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    @if (user != null)
+    {
+        <div class="sidebar close">
+            <div class="logo-details">
+                <i class="bi bi-building-fill-check"></i>
+                <span class="logo_name">Real Estate App</span>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - RealEstateApp.Presentation.WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <ul class="nav-links">
+                @if (isAdmin)
+                {
+                    <li>
+                        <a asp-controller="Admin" asp-action="Index">
+                            <i class="bi bi-house-fill"></i>
+                            <span class="link_name">Home</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Admin" asp-action="Index">Home</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="AgentsList">
+                            <i class="bi bi-people-fill"></i>
+                            <span class="link_name">Agents List</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Admin" asp-action="AgentsList">Agents List</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="AdminManager">
+                            <i class="bi bi-person-fill-gear"></i>
+                            <span class="link_name">Mant. Admins</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Admin" asp-action="AdminManager">Mant. Admins</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Admin" asp-action="DevsManager">
+                            <i class="bi bi-code-slash"></i>
+                            <span class="link_name">Mant. Developers</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Admin" asp-action="DevsManager">Mant. Developers</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="TypeOfProperties" asp-action="Index">
+                            <i class="bi bi-building-fill-gear"></i>
+                            <span class="link_name">Mant. Type of Properties</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="TypeOfProperties" asp-action="Index">Mant. Type of Properties</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="TypeOfSales" asp-action="Index">
+                            <i class="bi bi-receipt"></i>
+                            <span class="link_name">Mant. Type of Sales</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="TypeOfSales" asp-action="Index">Mant. Type of Sales</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Improvements" asp-action="Index">
+                            <i class="bi bi-rocket-takeoff-fill"></i>
+                            <span class="link_name">Mant. Improvements</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Improvements" asp-action="Index">Mant. Improvements</a></li>
+                        </ul>
+                    </li>
+                }
+                @if (isClient)
+                {
+                    <li>
+                        <a asp-controller="Client" asp-action="Index">
+                            <i class="bi bi-house-fill"></i>
+                            <span class="link_name">Home</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Client" asp-action="Index">Home</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Client" asp-action="Agents">
+                            <i class="bi bi-people-fill"></i>
+                            <span class="link_name">Agents</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Client" asp-action="Agents">Agents</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Client" asp-action="MyProperties">
+                            <i class="bi bi-building-fill"></i>
+                            <span class="link_name">My Properties</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Client" asp-action="MyProperties">My Properties</a></li>
+                        </ul>
+                    </li>
+                    
+                }
+                @if (isAgent)
+                {
+                    <li>
+                        <a asp-controller="Agent" asp-action="Index">
+                            <i class="bi bi-house-fill"></i>
+                            <span class="link_name">Home</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Agent" asp-action="Index">Home</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Agent" asp-action="MyProfile">
+                            <i class="bi bi-person-lines-fill"></i>
+                            <span class="link_name">My Profile</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Agent" asp-action="MyProfile">My Profile</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Agent" asp-action="GetAll">
+                            <i class="bi bi-building-fill-gear"></i>
+                            <span class="link_name">Mant. Properties</span>
+                        </a>
+                        <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="Agent" asp-action="GetAll">Mant. Properties</a></li>
+                        </ul>
+                    </li>
+
+                }
+                <li>
+                    <a asp-controller="User" asp-action="Logout">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span class="link_name">Sign out</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" asp-controller="User" asp-action="Logout">Sign out</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="profile-details">
+                        <div class="profile-content">
+                            @if(isAdmin || isDeveloper){
+
+                                <img src="/Images/profile.jpeg" alt="profileImg">
+                            }
+
+                            @if (isAgent || isClient)
+                            {
+
+                                <img src="@user.ImagePath" alt="profileImg">
+                            }
+                            
+                        </div>
+                        <div class="name-job">
+                            <div class="job fw-bold">@user.FirstName @user.LastName</div>
+                            <div class="job">👨🏻‍🚀 @user.UserName</div>
+                        </div>
+                        <i class="bi bi-dot"></i>
+                    </div>
+                </li>
+            </ul>
         </div>
-    </footer>
+        }
+
+     @if (user == null){
+        <div class="sidebar close">
+            <div class="logo-details">
+                <i class="bi bi-building-fill-check"></i>
+                <span class="logo_name">Real Estate App</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        <i class="bi bi-house-fill"></i>
+                        <span class="link_name">Home</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" asp-controller="Home" asp-action="Index">Home</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Agents">
+                        <i class="bi bi-people-fill"></i>
+                            <span class="link_name">Agents</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" asp-controller="Home" asp-action="Agents">Agents</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a asp-controller="User" asp-action="Register">
+                        <i class="bi bi-person-fill-add"></i>
+                        <span class="link_name">Join the App</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                            <li><a class="link_name" asp-controller="User" asp-action="Register">Join the App</a></li>
+                    </ul>
+                </li>
+                <li>
+                     <a asp-controller="User" asp-action="Index">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                            <span class="link_name">Login</span>
+                    </a>
+                    <ul class="sub-menu blank">
+                        <li><a class="link_name" asp-controller="User" asp-action="Index">Login</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+     }
+
+    <section class="home-section">
+        <div class="home-content" role="main">
+            <div class="container">
+                <main class="pb-3 mx-auto mb-5">
+
+                    @RenderBody()
+
+                </main>
+            </div>
+        </div>
+    </section>
+
+    @*<footer class="border-top footer text-light mt-5" style="background: #11101d;">
+        <div class="container text-center">
+            &copy; 2022 Real Estate App - Designed with 💙 by ITLA students
+        </div>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/virtual-select.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        VirtualSelect.init({
+            ele: '#checkboxes-select'
+        });
+    </script>
 </body>
 </html>

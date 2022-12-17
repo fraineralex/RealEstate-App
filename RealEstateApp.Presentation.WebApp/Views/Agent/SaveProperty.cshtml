@@ -1,0 +1,190 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Properties
+@using RealEstateApp.Core.Application.ViewModels.TypeOfProperties
+@using RealEstateApp.Core.Application.ViewModels.TypeOfSales
+@using RealEstateApp.Core.Application.ViewModels.Improvements
+@model SavePropertiesViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    bool isSelected = false;
+
+    ViewData["Title"] = "Save Property";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h4>@(editMode ? $"Editing the Property" : "Creating a new Property")</h4>
+                </div>
+                <div class="card-body">
+
+                    @if(Model.TypeOfProperties == null || Model.TypeOfProperties.Count == 0) 
+                    {
+                        <h4>You must have Properties created</h4>
+                    }
+
+                    @if (Model.TypeOfSales == null || Model.TypeOfSales.Count == 0)
+                    {
+                        <h4>You must have Types of Sales created</h4>
+                    }
+
+                    @if (Model.Improvements == null || Model.Improvements.Count == 0)
+                    {
+                        <h4>You must have Improvements created</h4>
+                    }
+
+                    @if (Model.TypeOfProperties.Count != 0 && Model.TypeOfSales.Count != 0 && Model.Improvements.Count != 0)
+                    {
+                        @Html.ValidationSummary(false, "", new {@class = "text-danger"})
+                        <form method="post" asp-controller="Agent" asp-action="@(editMode ? "Edit":"Create")" enctype="multipart/form-data">
+
+                            <div class="mb-3">
+                                <label asp-for="TypeOfPropertyId" class="form-label">Type Of Property:</label>
+                                <select asp-for="TypeOfPropertyId" asp-items="@(new SelectList(Model.TypeOfProperties, "Id", "Name"))" class="form-select">
+                                    <option value="0" selected>Select one Type of Property</option>
+                                </select>
+                                <span asp-validation-for="TypeOfPropertyId" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="TypeOfSaleId" class="form-label">Type Of Sale:</label>
+                                <select asp-for="TypeOfSaleId" asp-items="@(new SelectList(Model.TypeOfSales, "Id", "Name"))" class="form-select">
+                                    <option value="0" selected>Select one Type of Sale</option>
+                                </select>
+                                <span asp-validation-for="TypeOfPropertyId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label asp-for="Price" class="form-label">Price:</label>
+                                <input asp-for="Price" class="form-control" type="number" min="1" step="any" placeholder="Type the amount of this property in RD$" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label">Description: </label>
+                                <textarea type="text" asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="LandSize" class="form-label">Land size:</label>
+                                <input asp-for="LandSize" class="form-control" type="number" min="1" step="any" placeholder="Type the size of the property in meters" />
+                                <span asp-validation-for="LandSize" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="NumberOfRooms" class="form-label">Room's Quantity:</label>
+                                <input asp-for="NumberOfRooms" class="form-control" type="number" min="1" step="any" placeholder="Type the amount of rooms of the property" />
+                                <span asp-validation-for="NumberOfRooms" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="NumberOfBathrooms" class="form-label">Bathroom's Quantity:</label>
+                                <input asp-for="NumberOfBathrooms" class="form-control" type="number" min="1" step="any" placeholder="Type the amount of bathrooms of the property" />
+                                <span asp-validation-for="NumberOfBathrooms" class="text-danger"></span>
+                            </div>
+
+                            <label class="form-label">Improvements:</label>
+                            @if (editMode)
+                            {
+                                @foreach (ImprovementsViewModel improvements in ViewBag.AllImprovements)
+                                {
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            @if(improvements.IsChecked){
+                                                <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" checked />
+                                            <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
+                                            }
+                                            else{
+
+                                            <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id"  />
+                                            <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+
+                            else{
+                                @foreach (ImprovementsViewModel improvements in Model.Improvements)
+                                {
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" value="@improvements.Id" type="checkbox" name="ImprovementsId" id="improvement-@improvements.Id" />
+                                            <label class="form-check-label" for="improvement-@improvements.Id">@improvements.Name</label>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            <div class="mb-3">
+                                @if (editMode)
+                                {
+                                    <img src="@Model.ImagePathOne" class="img-fluid" />
+                                    <label asp-for="ImageFileOne" class="form-label">Image 1:</label>
+                                    <input asp-for="ImageFileOne" class="form-control" />
+                                }
+                                else{
+                                <label asp-for="ImageFileOne" class="form-label">Image 1:</label>
+                                <input asp-for="ImageFileOne" class="form-control" required/>
+                                }
+
+                            </div>
+
+                            <div class="mb-3">
+                                @if (editMode)
+                                {
+                                    <img src="@Model.ImagePathTwo" class="img-fluid" />
+                                }
+                                <label asp-for="ImageFileTwo" class="form-label">Image 2:</label>
+                                <input asp-for="ImageFileTwo" class="form-control" />
+                            </div>
+
+                            <div class="mb-3">
+                                @if (editMode)
+                                {
+                                    <img src="@Model.ImagePathThree" class="img-fluid" />
+                                }
+                                <label asp-for="ImageFileThree" class="form-label">Image 3:</label>
+                                <input asp-for="ImageFileThree" class="form-control" />
+                            </div>
+
+                            <div class="mb-3">
+                                @if (editMode)
+                                {
+                                    <img src="@Model.ImagePathFour" class="img-fluid" />
+                                }
+                                <label asp-for="ImageFileFour" class="form-label">Image 4:</label>
+                                <input asp-for="ImageFileFour" class="form-control" />
+                            </div>
+
+
+
+                            <input type="hidden" asp-for="Id" />
+
+                            <a asp-controller="Agent" asp-action="GetAll" class="btn btn-warning">Go Back</a>
+                            <button type="submit" class="btn btn-primary">Add</button>
+
+                        </form>
+
+                    }
+
+                    else{
+                        <a asp-controller="Agent" asp-action="Index" class="btn btn-warning">Go back</a>
+                    }
+                    
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

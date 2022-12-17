@@ -1,0 +1,86 @@
+﻿@using RealEstateApp.Core.Application.DTOs.Account
+@using RealEstateApp.Core.Application.Helpers
+@using Microsoft.AspNetCore.Http
+@using RealEstateApp.Core.Application.ViewModels.Admin
+@model List<UserViewModel>
+@inject IHttpContextAccessor httpContextAccesor
+@{
+    var currentlyUser = httpContextAccesor.HttpContext.Session.Get<AuthenticationResponse>("user");
+}
+
+@{
+    ViewData["Title"] = "Mant. Admins";
+}
+
+<main>
+
+    <section class="container">
+        <div class="row mx-auto">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-bold mt-4 text-center text-primary"><i class="bi bi-person-fill-gear"></i> Mant. Administrators</h1>
+                <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                    Here you can manager the admins user registered in the system. <i class="text-white">🚀</i>
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container container-content text-center p-5">
+        <div class="row">
+            <div class=" col-md-10 mx-auto">
+                <div class="container pt-5 p-5 bg-dark rounded-3">
+                    <table id="table-invited" class=" table table-dark table-hover">
+
+                        <div class="d-flex justify-content-between mb-3 text-dark">
+                            <h2 class="text-white">ADMINISTRATORS</h2>
+                            <a asp-controller="Admin" asp-action="RegisterUser" asp-route-role="admin" class="btn btn-lg btn-info mt-2 text-light mt-2 mb-2"><i class="bi bi-person-fill-gear"></i> Register Administrator</a>
+                        </div>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">ID Card</th>
+                                <th scope="col">Email</th>
+                                <th class="text-center" scope="col">Update</th>
+                                <th class="text-center" scope="col">Chage status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (UserViewModel user in Model)
+                            {
+                                <tr class="table-light">
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td>@user.UserName</td>
+                                    <td>@user.IDCard</td>
+                                    <td>@user.Email</td>
+                                    <td>
+                                        <a asp-controller="Admin" asp-action="UpdateUser" asp-route-username="@user.UserName" asp-route-role="admin" class="btn btn-sm btn-info"><i class="bi bi-pencil-square"></i></a>
+                                    </td>
+                                    <td>
+                                        @if (user.Id != currentlyUser.Id)
+                                        {
+
+                                            @if (!user.Status)
+                                            {
+                                                <a onclick="ChangeUserStatus('active', 'Administrator', '@user.Id')" class="btn btn-sm btn-primary"><i class="bi bi-toggle2-on"> Active</i></a>
+                                            }
+                                            else
+                                            {
+                                                <a onclick="ChangeUserStatus('unactive', 'Administrator', '@user.Id')" class="btn btn-sm btn-danger"><i class="bi bi-toggle2-off"> Unactive</i></a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

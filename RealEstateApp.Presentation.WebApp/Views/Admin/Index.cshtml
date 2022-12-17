@@ -1,0 +1,64 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Admin
+@model HomeAdminViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Welcome to Real State App, here you can manager the properties of the system. <i class="text-white">🚀</i>
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="dash-content">
+    <div class="overview">
+        <div class="title">
+            <i class="bi bi-speedometer2"></i>
+            <h1 class="fw-bold text-center text-primary"> Dashboard</h1>
+        </div>
+
+        <div class="boxes">
+            <div class="box box2">
+                <i class="bi bi-person-badge"></i>
+                <span class="text">Active Agents</span>
+                <span class="number">@Model.ActiveAgentsQuantity</span>
+            </div>
+            <div class="box box3">
+                <i class="bi bi-person-badge"></i>
+                <span class="text">Unactive Agents</span>
+                <span class="number">@Model.UnactiveAgentsQuantity</span>
+            </div>
+            <div class="box box2 mt-3">
+                <i class="bi bi-person"></i>
+                <span class="text">Active Clients</span>
+                <span class="number">@Model.ActiveClientsQuantity</span>
+            </div>
+            <div class="box box3 mt-3">
+                <i class="bi bi-person"></i>
+                <span class="text">Unactive Clients</span>
+                <span class="number">@Model.UnactiveClientsQuantity</span>
+            </div>
+            <div class="box box2 mt-3">
+                <i class="bi bi-code-slash"></i>
+                <span class="text">Active Devs</span>
+                <span class="number">@Model.ActiveDevsQuantity</span>
+            </div>
+            <div class="box box3 mt-3">
+                <i class="bi bi-code-slash"></i>
+                <span class="text">Unactive Devs</span>
+                <span class="number">@Model.UnactiveDevsQuantity</span>
+            </div>
+            <div class="box box7 mt-3">
+                <i class="bi bi-building"></i>
+                <span class="text">Total Properties</span>
+                <span class="number">@Model.PropertiesQuantity</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Properties
+@model PropertyDetailsViewModel
+@{
+    ViewData["Title"] = "Property Details";
+}
+
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Welcome to Real State App, here you can manager the properties of the system. <i class="text-white">🚀</i>
+            </p>
+        </div>
+    </div>
+
+  
+
+    <div class="row">
+
+
+
+        <div class="col-4">
+            <div class="card shadow-sm mb-3">
+                <img class="bd-placeholder-img card-img-top" src="@Model.ImagePathOne" />
+
+                @if (Model.ImagePathTwo != null && Model.ImagePathTwo != "")
+                {
+                    <img class="bd-placeholder-img card-img-top" src="@Model.ImagePathTwo" />
+
+                }
+
+                @if (Model.ImagePathThree != null && Model.ImagePathThree != "")
+                {
+                    <img class="bd-placeholder-img card-img-top" src="@Model.ImagePathThree" />
+
+                }
+
+                @if (Model.ImagePathFour != null && Model.ImagePathFour != "")
+                {
+                    <img class="bd-placeholder-img card-img-top" src="@Model.ImagePathFour" />
+
+                }
+
+                <div class="card-body">
+                    <h4>Type of Property: @Model.TypeOfProperty.Name</h4>
+                    <p class="card-text">Code: @Model.Code</p>
+                    <p class="card-text">Type of Sale: @Model.TypeOfSale.Name</p>
+                    <p class="card-text">Price: RD$ @Model.Price</p>
+                    <p class="card-text">Number of Rooms: @Model.NumberOfRooms</p>
+                    <p class="card-text">Number of Bathrooms: @Model.NumberOfBathrooms</p>
+                    <p class="card-text">Land Size: @Model.LandSize mt</p>
+                    <p class="card-text">Property Description: @Model.TypeOfProperty.Description</p>
+                    <h5>Improvements:</h5>
+                    @foreach (var item in Model.Improvements)
+                    {
+                        <p class="card-text">@item.Name</p>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+
+
+            <div class="col-4 ">
+                <div class="mx-auto card bg-dark text-white mt-3" style="border-radius: 1rem;">
+                    <div class="card-body">
+                         <img class="bd-placeholder-img card-img-top" src="@Model.AgentImagePath" />
+                        <h4 class="fw-bold mb-3 text-uppercase mt-2 fs-5"><i class="bi bi-people-fill"></i> <i class="text-white"> @Model.AgentName</i></h4>
+                        <p class="fs-6 text-primary fw-bold">@Model.AgentPhoneNumber </p>
+                        <p class="fs-6 text-primary fw-bold">@Model.AgentEmail </p>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+    </div>
+
+</section>

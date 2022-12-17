@@ -1,0 +1,112 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Users
+@model SaveUserViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary">🏢 Real Estate App</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Welcome to Real State App, sign in to interact with the system. <i class="text-white">🚀</i>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <div class="row mx-auto">
+         <div class="col-6 mx-auto card bg-dark text-white mt-5 mb-5" style="border-radius: 1rem;">
+             <div class="card-body">
+
+                    <h2 class="fw-bold mb-3 text-uppercase text-center mt-2">Register a new User</h2>
+                        <p class="text-white-50 fs-5 mb-3 text-center">Please fill in the fields below</p>
+
+                    @if (Model.HasError)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p>@Model.Error</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                <form method="post" enctype="multipart/form-data" asp-controller="User" asp-action="Register">
+
+                        <div class="p-3">
+                            <label asp-for="FirstName" class="form-label text-white"><strong>First Name <small class="text-danger"> *</small></strong></label>
+                            <input type="text" class="form-control bg-dark text-white border-white form-control-lg" asp-for="FirstName">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="LastName" class="form-label text-white"><strong>Last Name <small class="text-danger"> *</small></strong></label>
+                            <input type="text" class="form-control bg-dark text-white border-white form-control-lg" asp-for="LastName">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="UserName" class="form-label text-white"><strong>Username <small class="text-danger"> *</small></strong></label>
+                            <input type="text" class="form-control bg-dark text-white border-white form-control-lg" asp-for="UserName">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="IDCard" class="form-label text-white"><strong>ID Card <small class="text-danger"> *</small></strong></label>
+                            <input type="text" class="form-control bg-dark text-white border-white form-control-lg" asp-for="IDCard">
+                            <span asp-validation-for="IDCard" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="Email" class="form-label text-white"><strong>Email <small class="text-danger"> *</small></strong></label>
+                            <input type="email" class="form-control bg-dark text-white border-white form-control-lg" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="Phone" class="form-label text-white"><strong>Phone <small class="text-danger"> *</small></strong></label>
+                            <input type="text" class="form-control bg-dark text-white border-white form-control-lg" asp-for="Phone">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="File" class="form-label text-white"><strong>Profile Image <small class="text-danger"> *</small></strong></label>
+                            <input type="file" class="form-control bg-dark text-white border-white form-control-lg" asp-for="File" required>
+                            <span asp-validation-for="File" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                        <label for="role" class="form-label text-white"><strong>User's Type <small class="text-danger"> *</small></strong></label>
+                        <select id="role" class="form-select bg-dark text-white border-white form-select-lg" required name="role">
+                                @foreach (var item in ViewBag.UserTypes)
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="Password" class="form-label text-white"><strong>Password <small class="text-danger"> *</small></strong></label>
+                            <input type="password" class="form-control bg-dark text-white border-white form-control-lg" asp-for="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="p-3 pt-0 mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label text-white"><strong>Confirm Password <small class="text-danger"> *</small></strong></label>
+                            <input type="password" class="form-control bg-dark text-white border-white form-control-lg" asp-for="ConfirmPassword">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                                                <button class="btn btn-primary  btn-lg float-end" type="submit">
+                            <i class="bi bi-check2-square"></i>
+                            Done
+                        </button>
+
+                    <a class="btn btn-light  btn-lg float-end me-2" asp-controller="User" asp-action="Index"><i class="bi bi-arrow-return-left"></i> Back</a>
+                    </form>
+             </div>
+         </div>
+    </div>
+
+ </section>

@@ -1,0 +1,52 @@
+﻿@using RealEstateApp.Core.Application.ViewModels.Admin
+@model List<UserViewModel>
+@{
+    ViewData["Title"] = "Agents List";
+}
+
+
+<section class="container">
+    <div class="row mx-auto">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-bold mt-4 text-center text-primary"><i class="bi bi-people-fill"></i> Agents List</h1>
+            <p class="fs-3 fw-bold text-secondary mt-1 text-center">
+                Here you can manager the agents of the system. <i class="text-white">🚀</i>
+            </p>
+        </div>
+    </div>
+</section>
+
+<div class="row mb-5 mx-auto">
+    @if (Model.Count != 0)
+    {
+
+        @foreach (UserViewModel user in Model)
+        {
+            <div class="col-4 ">
+                <div class="mx-auto card bg-dark text-white mt-3" style="border-radius: 1rem;">
+                    <div class="card-body">
+
+                        <h4 class="fw-bold mb-3 text-uppercase mt-2 fs-5"><i class="bi bi-people-fill"></i> <i class="text-white"> @user.FirstName @user.LastName</i></h4>
+                        <p class="fs-6 text-primary fw-bold">@user.Email </p>
+                        <p class="fs-6 text-primary fw-bold">@user.PropertiesQuantity Properties </p>
+                        <a class="btn btn-sm btn-danger float-end" onclick="Delete('@user.Id', 'Admin', 'Agent')"><i class="bi bi-trash-fill"></i> Delete</a>
+                        @if (!user.Status)
+                        {
+                            <a onclick="ChangeUserStatus('active', 'Agent', '@user.Id')" class="btn btn-sm btn-primary float-end me-2"><i class="bi bi-toggle2-off"> Active</i></a>
+                        }
+                        else
+                        {
+                            <a onclick="ChangeUserStatus('unactive', 'Agent', '@user.Id')" class="btn btn-sm btn-warning float-end me-2"><i class="bi bi-toggle2-on"> Unactive</i></a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+
+        <h4 class="fs-4 fw-bold text-secondary mt-5 text-center mb-5"><i class="bi bi-rocket-takeoff-fill"></i> No Agents yet</h4>
+    }
+</div>
