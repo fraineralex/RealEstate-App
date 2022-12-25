@@ -15,6 +15,7 @@ namespace RealEstateApp.Infrastructure.Identity.Seeds
             defaultUser.Email = "admin@email.com";
             defaultUser.FirstName = "Admin FirstName";
             defaultUser.LastName = "Admin LastName";
+            defaultUser.ImagePath = "/Images/profile.jpeg";
             defaultUser.EmailConfirmed = true;
             defaultUser.PhoneNumberConfirmed = true;
 
