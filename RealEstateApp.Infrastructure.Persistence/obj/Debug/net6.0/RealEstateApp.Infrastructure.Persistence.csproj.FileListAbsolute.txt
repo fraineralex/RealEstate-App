@@ -1,0 +1,17 @@
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.deps.json
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Core.Application.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Core.Domain.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Core.Application.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\bin\Debug\net6.0\RealEstateApp.Core.Domain.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.csproj.AssemblyReference.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.AssemblyInfoInputs.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.AssemblyInfo.cs
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.csproj.CoreCompileInputs.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.csproj.CopyComplete
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\refint\RealEstateApp.Infrastructure.Persistence.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\RealEstateApp.Infrastructure.Persistence.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Persistence\obj\Debug\net6.0\ref\RealEstateApp.Infrastructure.Persistence.dll

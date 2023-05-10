@@ -1,0 +1,160 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Application\\RealEstateApp.Core.Application.csproj": {}
+  },
+  "projects": {
+    "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Application\\RealEstateApp.Core.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Application\\RealEstateApp.Core.Application.csproj",
+        "projectName": "RealEstateApp.Core.Application",
+        "projectPath": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Application\\RealEstateApp.Core.Application.csproj",
+        "packagesPath": "C:\\Users\\Frainer Alexander\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Frainer Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Domain\\RealEstateApp.Core.Domain.csproj": {
+                "projectPath": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Domain\\RealEstateApp.Core.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.9, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Domain\\RealEstateApp.Core.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Domain\\RealEstateApp.Core.Domain.csproj",
+        "projectName": "RealEstateApp.Core.Domain",
+        "projectPath": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Domain\\RealEstateApp.Core.Domain.csproj",
+        "packagesPath": "C:\\Users\\Frainer Alexander\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\ASP.NET\\RealEstateApp\\RealEstateApp.Core.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Frainer Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

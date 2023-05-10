@@ -1,0 +1,17 @@
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Infrastructure.Shared.deps.json
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Infrastructure.Shared.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Infrastructure.Shared.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Core.Application.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Core.Domain.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Core.Application.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\bin\Debug\net6.0\RealEstateApp.Core.Domain.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.csproj.AssemblyReference.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.AssemblyInfoInputs.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.AssemblyInfo.cs
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.csproj.CoreCompileInputs.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.csproj.CopyComplete
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\refint\RealEstateApp.Infrastructure.Shared.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\RealEstateApp.Infrastructure.Shared.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Infrastructure.Shared\obj\Debug\net6.0\ref\RealEstateApp.Infrastructure.Shared.dll

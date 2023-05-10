@@ -1,0 +1,15 @@
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\bin\Debug\net6.0\RealEstateApp.Core.Application.deps.json
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\bin\Debug\net6.0\RealEstateApp.Core.Application.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\bin\Debug\net6.0\RealEstateApp.Core.Application.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\bin\Debug\net6.0\RealEstateApp.Core.Domain.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\bin\Debug\net6.0\RealEstateApp.Core.Domain.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.csproj.AssemblyReference.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.AssemblyInfoInputs.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.AssemblyInfo.cs
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.csproj.CoreCompileInputs.cache
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.csproj.CopyComplete
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\refint\RealEstateApp.Core.Application.dll
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\RealEstateApp.Core.Application.pdb
+D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Core.Application\obj\Debug\net6.0\ref\RealEstateApp.Core.Application.dll

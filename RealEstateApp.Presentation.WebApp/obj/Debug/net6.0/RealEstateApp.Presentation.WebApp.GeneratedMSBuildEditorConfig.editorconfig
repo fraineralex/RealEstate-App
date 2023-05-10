@@ -1,0 +1,156 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = RealEstateApp.Presentation.WebApp
+build_property.RootNamespace = RealEstateApp.Presentation.WebApp
+build_property.ProjectDir = D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Presentation.WebApp\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Dev\ASP.NET\RealEstateApp\RealEstateApp.Presentation.WebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Admin/AdminManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5NYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Admin/AgentsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWdlbnRzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Admin/DevsManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGV2c01hbmFnZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Admin/SaveUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2F2ZVVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Agent/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbnRcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Agent/GetAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbnRcR2V0QWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Agent/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Agent/SaveProperty.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbnRcU2F2ZVByb3BlcnR5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Agent/UpdateAgentProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbnRcVXBkYXRlQWdlbnRQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Client/Agents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFnZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Client/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Client/MyProperties.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XE15UHJvcGVydGllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Home/AgentProperties.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZ2VudFByb3BlcnRpZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Home/Agents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZ2VudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Home/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Improvements/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcm92ZW1lbnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Improvements/UpdateImprovement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcm92ZW1lbnRzXFVwZGF0ZUltcHJvdmVtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/TypeOfProperties/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHlwZU9mUHJvcGVydGllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/TypeOfProperties/UpdateTypeOfProperties.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHlwZU9mUHJvcGVydGllc1xVcGRhdGVUeXBlT2ZQcm9wZXJ0aWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/TypeOfSales/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHlwZU9mU2FsZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/TypeOfSales/UpdateTypeOfSales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHlwZU9mU2FsZXNcVXBkYXRlVHlwZU9mU2FsZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/User/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/User/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDb25maXJtRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/User/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/User/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/User/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Shared/_Layout-old.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQtb2xkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = b-4t40xexh56
+
+[D:/Dev/ASP.NET/RealEstateApp/RealEstateApp.Presentation.WebApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ledaedtn6v
